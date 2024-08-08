@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -27,9 +26,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
   @override
-  Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartProvider>(context);
+  void initState() {
+    super.initState();
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
     cartProvider.ResetBill();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         color: AppColors.bgColor,
@@ -101,13 +105,11 @@ class _HomeScreenState extends State<HomeScreen> {
         onDestinationSelected: (index) => setState(() {
           this.index = index;
           if (curentUser is Null) {
-            if(index != 3){
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Pages[index]));
+            if (index != 3) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Pages[index]));
             }
-
-          }
-          else{
+          } else {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Pages[index]));
           }
