@@ -56,7 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             children: [
                               Text(
-                                curentUser?.address["city"] ?? "Login now !!",
+                                curentUser?.address["city"] == null
+                                    ? "Login now !!"
+                                    : curentUser?.address["city"],
                                 style: const TextStyle(fontSize: 20),
                               ),
                               const Icon(
