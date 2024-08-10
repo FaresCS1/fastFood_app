@@ -10,7 +10,7 @@ class FillButton extends StatelessWidget {
   final String text;
   final IconData icon;
 
-  FillButton(
+  const FillButton(
       {super.key, required this.text, required this.icon, required this.route});
 
   @override
@@ -25,8 +25,8 @@ class FillButton extends StatelessWidget {
           );
         },
         child: Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment(0.8, 1),
@@ -43,12 +43,12 @@ class FillButton extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColors.bgColor,
                     fontWeight: FontWeight.w500,
                     fontSize: 25),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Icon(

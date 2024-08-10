@@ -1,8 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/models/app_info.dart';
 import 'package:untitled2/features/entry/pages/login/login_screen.dart';
@@ -43,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -60,12 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             children: [
                               Text(
-                                curentUser?.address["city"] == null
-                                    ? "Login now !!"
-                                    : curentUser?.address["city"],
-                                style: TextStyle(fontSize: 20),
+                                curentUser?.address["city"] ?? "Login now !!",
+                                style: const TextStyle(fontSize: 20),
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.add_location_alt,
                                 color: AppColors.orangeColor,
                                 size: 30,
@@ -75,24 +69,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Column(
                   children: [
                     Container(
                         height: 155,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          image: DecorationImage(
+                          image: const DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage("assets/images/ads_cover.jpg")),
                           borderRadius: BorderRadius.circular(15),
                           color: AppColors.midOrangeColor,
                         ),
                         child: Container()),
-                    subtitleWidget("Categories", FoodsScreen()),
-                    CategoryWidget(),
-                    subtitleWidget("Meals", MealsScreen()),
-                    MealsWidget()
+                    subtitleWidget("Categories", const FoodsScreen()),
+                    const CategoryWidget(),
+                    subtitleWidget("Meals", const MealsScreen()),
+                    const MealsWidget()
                   ],
                 )
               ],
@@ -104,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedIndex: index,
         onDestinationSelected: (index) => setState(() {
           this.index = index;
-          if (curentUser is Null) {
+          if (curentUser == null) {
             if (index != 3) {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Pages[index]));
@@ -115,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         }),
         backgroundColor: AppColors.orangeColor,
-        destinations: [
+        destinations: const [
           NavigationDestination(
               icon: Icon(
                 Icons.home,

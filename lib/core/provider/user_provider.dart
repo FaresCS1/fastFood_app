@@ -6,7 +6,7 @@ import '../models/user.dart';
 class UserProvider extends ChangeNotifier {
   List<Users> user = [];
   bool isLoading = false;
-  String? errorMessage = null;
+  String? errorMessage;
 
   Future<void> fetchData() async {
     isLoading = true;

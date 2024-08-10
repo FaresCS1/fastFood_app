@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/models/app_info.dart';
@@ -16,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColors.bgColor,
-        leading: backIcon(Icons.arrow_back, HomeScreen()),
+        leading: backIcon(Icons.arrow_back, const HomeScreen()),
         title: const Text(
           "Profile Information",
           style: TextStyle(
@@ -28,25 +27,25 @@ class ProfileScreen extends StatelessWidget {
       body: Container(
         color: AppColors.bgColor,
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Center(
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       curentUser!.username,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
                         color: AppColors.brownColor,
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       curentUser!.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16, color: AppColors.lightOrangeColor),
                     )
                   ],
@@ -67,6 +66,5 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

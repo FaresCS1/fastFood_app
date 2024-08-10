@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../features/home/pages/home_screen.dart';
-
 class DialogApp extends StatelessWidget {
   final String title;
   final IconData icon;

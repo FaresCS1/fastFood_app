@@ -12,7 +12,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => UserProvider()..fetchData()),
         ChangeNotifierProvider(create: (_) => CartProvider()..ResetBill())
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Splachpage());
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false, home: Splachpage());
   }
 }

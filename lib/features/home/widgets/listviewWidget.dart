@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/features/foods/pages/foods.dart';
 
 import '../../../core/colors/appColors.dart';
-import '../../../core/models/app_info.dart';
 import '../../../core/models/foodMenu_info.dart';
-import '../../foods/pages/foodsInfo.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({super.key});
@@ -20,13 +17,15 @@ class CategoryWidget extends StatelessWidget {
             itemCount: foodsCategory.length,
             itemBuilder: (context, index) => InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FoodsScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FoodsScreen()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                         color: lightColors[index],
                         borderRadius: BorderRadius.circular(15),
@@ -41,7 +40,7 @@ class CategoryWidget extends StatelessWidget {
                           ),
                           Text(
                             "${foodsCategory[index]}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: AppColors.bgColor,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20),

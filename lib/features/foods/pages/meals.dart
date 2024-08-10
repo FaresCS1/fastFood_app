@@ -1,12 +1,6 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../core/colors/appColors.dart';
-import '../../../core/models/app_info.dart';
 import '../../../core/models/foodMenu_info.dart';
 import '../../../core/shered_widget/Icons/widgets/backIcon.dart';
 import '../../home/pages/home_screen.dart';
@@ -23,8 +17,8 @@ class MealsScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.bgColor,
           centerTitle: true,
-          leading: backIcon(Icons.arrow_back_ios, HomeScreen()),
-          title: Text(
+          leading: backIcon(Icons.arrow_back_ios, const HomeScreen()),
+          title: const Text(
             "Meals",
             style: TextStyle(
               fontSize: 30,
@@ -38,7 +32,7 @@ class MealsScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
                 mainAxisSpacing: 15,
               ),
@@ -51,11 +45,11 @@ class MealsScreen extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => Foodsinfo(
                                   foodInfo: mealsInfo[index],
-                                  route: MealsScreen(),
+                                  route: const MealsScreen(),
                                 )));
                   },
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(70),
                           bottomRight: Radius.circular(70)),
@@ -80,24 +74,24 @@ class MealsScreen extends StatelessWidget {
                                   image: AssetImage(mealsInfo[index]["img"]),
                                   fit: BoxFit.fill)),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Column(
                           children: [
                             Text(
                               mealsInfo[index]["name"],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 28,
                                 color: AppColors.orangeColor,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
                                   "${mealsInfo[index]["price"].toString()} price",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20,
                                       color: AppColors.brownColor),
                                 ),
@@ -105,11 +99,11 @@ class MealsScreen extends StatelessWidget {
                                   children: [
                                     Text(
                                       mealsInfo[index]["rate"].toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20,
                                           color: AppColors.brownColor),
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.star,
                                       color: AppColors.yellowColor,
                                     ),

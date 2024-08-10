@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
@@ -11,10 +10,10 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: backIcon(Icons.home, HomeScreen()),
+        leading: backIcon(Icons.home, const HomeScreen()),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
+      body: const Padding(
+        padding: EdgeInsets.all(20),
         child: Center(
           child: Text(
             "Orders & Payment Screen in Progress ... (Coming Soon)",

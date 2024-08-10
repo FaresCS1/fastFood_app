@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 
@@ -11,11 +10,11 @@ Widget cardInfo(String title, String subTitle, IconData icon) {
       child: ListTile(
         title: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               color: AppColors.brownColor, fontWeight: FontWeight.bold),
         ),
         subtitle: Text(subTitle,
-            style: TextStyle(
+            style: const TextStyle(
                 color: AppColors.brownColor, fontWeight: FontWeight.bold)),
         leading: Icon(
           icon,

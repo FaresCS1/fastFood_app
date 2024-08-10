@@ -10,12 +10,8 @@ class TextField extends StatefulWidget {
   final String hinttext;
   late bool obscureText;
 
-  TextField(
-    this.icon,
-    this.hinttext,
-    this.obscureText,
-    this.controller,
-  );
+  TextField(this.icon, this.hinttext, this.obscureText, this.controller,
+      {super.key});
 
   @override
   State<TextField> createState() => _TextFieldState();
@@ -45,7 +41,7 @@ class _TextFieldState extends State<TextField> {
                         widget.obscureText = !widget.obscureText;
                       });
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.remove_red_eye,
                       color: AppColors.midOrangeColor,
                     ),

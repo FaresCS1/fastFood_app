@@ -16,15 +16,16 @@ class Subtitlebutton extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(color: AppColors.orangeColor, fontSize: 20),
+            style: const TextStyle(color: AppColors.orangeColor, fontSize: 20),
           ),
           TextButton(
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => route));
               },
-              child: Text("all ${text}",
-                  style: TextStyle(color: AppColors.grayColor, fontSize: 18)))
+              child: Text("all $text",
+                  style: const TextStyle(
+                      color: AppColors.grayColor, fontSize: 18)))
         ],
       ),
     );

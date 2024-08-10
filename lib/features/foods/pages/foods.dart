@@ -18,8 +18,8 @@ class FoodsScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColors.bgColor,
-          leading: backIcon(Icons.arrow_back_ios, HomeScreen()),
-          title: Text(
+          leading: backIcon(Icons.arrow_back_ios, const HomeScreen()),
+          title: const Text(
             "Foods",
             style: TextStyle(
               fontSize: 30,
@@ -33,7 +33,7 @@ class FoodsScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5,
@@ -47,7 +47,7 @@ class FoodsScreen extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => Foodsinfo(
                                   foodInfo: foodInfo[index],
-                                  route: FoodsScreen(),
+                                  route: const FoodsScreen(),
                                 )));
                   },
                   child: Card(
@@ -61,7 +61,7 @@ class FoodsScreen extends StatelessWidget {
                         ),
                         Text(
                           foodInfo[index]["name"],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColors.orangeColor,
                           ),
                         ),
@@ -73,7 +73,7 @@ class FoodsScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Text(foodInfo[index]["rate"].toString()),
-                                Icon(
+                                const Icon(
                                   Icons.star,
                                   color: AppColors.yellowColor,
                                 ),

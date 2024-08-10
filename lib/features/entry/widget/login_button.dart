@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/features/entry/pages/login/login_screen.dart';
 
@@ -17,10 +16,9 @@ Widget LoginButton(BuildContext context, List<Users> user,
         for (Users users in user) {
           if (users.username == username.text) {
             curentUser = users;
-            print(users.username);
           }
         }
-        if (curentUser is Null) {
+        if (curentUser == null) {
           showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -36,8 +34,8 @@ Widget LoginButton(BuildContext context, List<Users> user,
           showDialog(
               context: context,
               builder: (BuildContext context) {
-                return DialogApp(
-                  title: 'Succsess  Login',
+                return const DialogApp(
+                  title: 'Success  Login',
                   icon: Icons.verified_user,
                   color: Colors.greenAccent,
                   textButton: 'Start Explore >>',
@@ -47,8 +45,8 @@ Widget LoginButton(BuildContext context, List<Users> user,
         }
       },
       child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment(0.8, 1),
@@ -60,7 +58,7 @@ Widget LoginButton(BuildContext context, List<Users> user,
               tileMode: TileMode.mirror),
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(

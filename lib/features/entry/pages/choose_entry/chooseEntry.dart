@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/colors/appColors.dart';
@@ -16,7 +15,7 @@ class ChooseEntry extends StatelessWidget {
     return Material(
       color: AppColors.bgColor,
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -24,7 +23,8 @@ class ChooseEntry extends StatelessWidget {
             const SizedBox(height: 30),
             fillButton(LoginScreen(), "Login", Icons.login),
             fillButton(SignupScreen(), "Signup", Icons.arrow_forward),
-            fillButton(HomeScreen(), "as Gust", Icons.supervised_user_circle),
+            fillButton(
+                const HomeScreen(), "as Gust", Icons.supervised_user_circle),
           ],
         ),
       ),

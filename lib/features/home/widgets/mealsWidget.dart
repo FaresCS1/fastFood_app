@@ -1,12 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:untitled2/features/home/pages/home_screen.dart';
 
 import '../../../core/colors/appColors.dart';
-import '../../../core/models/app_info.dart';
 import '../../../core/models/foodMenu_info.dart';
 import '../../foods/pages/foodsInfo.dart';
 
@@ -28,7 +23,7 @@ class MealsWidget extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => Foodsinfo(
                             foodInfo: mealsInfo[index],
-                            route: HomeScreen(),
+                            route: const HomeScreen(),
                           )));
             },
             child: Padding(
@@ -54,7 +49,7 @@ class MealsWidget extends StatelessWidget {
                           Container(
                             height: 40,
                             width: 150,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomRight: Radius.circular(7),
                                     topRight: Radius.circular(7)),
@@ -63,13 +58,13 @@ class MealsWidget extends StatelessWidget {
                                 child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.fastfood,
                                   color: AppColors.bgColor,
                                 ),
                                 Text(
                                   "${meals[index]} meal",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16, color: AppColors.bgColor),
                                 ),
                               ],

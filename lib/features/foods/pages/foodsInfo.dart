@@ -1,10 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
@@ -32,7 +26,7 @@ class Foodsinfo extends StatelessWidget {
             Container(
               width: double.infinity,
               height: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.whiteColor,
               ),
               child: Column(
@@ -45,14 +39,14 @@ class Foodsinfo extends StatelessWidget {
                           onPressed: () {
                             cartProvider.addToCart(foodInfo);
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.add_shopping_cart,
                             color: AppColors.orangeColor,
                           ))
                     ],
                   ),
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(50),
                       topLeft: Radius.circular(50),
                     ),
@@ -66,7 +60,7 @@ class Foodsinfo extends StatelessWidget {
             ),
             Container(
               height: 550,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.bgColor,
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(100),
@@ -83,25 +77,25 @@ class Foodsinfo extends StatelessWidget {
                           children: [
                             Text(
                               foodInfo["name"],
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: AppColors.orangeColor, fontSize: 28),
                             ),
                             Text(
                               foodInfo["type"],
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: AppColors.grayColor, fontSize: 20),
                             )
                           ],
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Column(
+                        const Column(
                           children: [
                             Row(
                               children: [
@@ -126,7 +120,7 @@ class Foodsinfo extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Row(
+                            const Row(
                               children: [
                                 Text("Price",
                                     style: TextStyle(
@@ -136,18 +130,18 @@ class Foodsinfo extends StatelessWidget {
                                     color: AppColors.brownColor)
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Text(
                               "${foodInfo["price"].toString()}  Riyals",
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             )
                           ],
                         ),
                         Column(
                           children: [
-                            Row(
+                            const Row(
                               children: [
                                 Text("Rate",
                                     style: TextStyle(
@@ -159,18 +153,18 @@ class Foodsinfo extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Text(
-                              "${foodInfo["rate"].toString()}",
-                              style: TextStyle(fontSize: 16),
+                              foodInfo["rate"].toString(),
+                              style: const TextStyle(fontSize: 16),
                             )
                           ],
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Padding(
@@ -183,40 +177,36 @@ class Foodsinfo extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        cartProvider.moreItem(foodInfo);
-                                        print("1+");
-                                        print(foodInfo["numOfItem"]);
-                                      },
-                                      icon: Icon(
-                                        color: AppColors.brownColor,
-                                        Icons.add_circle_outlined,
-                                        size: 30,
-                                      )),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    foodInfo["numOfItem"].toString(),
-                                    style: TextStyle(
-                                        color: AppColors.brownColor,
-                                        fontSize: 25),
-                                  ),
-                                  SizedBox(width: 10),
-                                  IconButton(
-                                      onPressed: () {
-                                        cartProvider.lessItem(foodInfo);
-                                      },
-                                      icon: Icon(
-                                        color: AppColors.brownColor,
-                                        Icons.do_not_disturb_on,
-                                        size: 30,
-                                      ))
-                                ],
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      cartProvider.moreItem(foodInfo);
+                                    },
+                                    icon: const Icon(
+                                      color: AppColors.brownColor,
+                                      Icons.add_circle_outlined,
+                                      size: 30,
+                                    )),
+                                const SizedBox(width: 10),
+                                Text(
+                                  foodInfo["numOfItem"].toString(),
+                                  style: const TextStyle(
+                                      color: AppColors.brownColor,
+                                      fontSize: 25),
+                                ),
+                                const SizedBox(width: 10),
+                                IconButton(
+                                    onPressed: () {
+                                      cartProvider.lessItem(foodInfo);
+                                    },
+                                    icon: const Icon(
+                                      color: AppColors.brownColor,
+                                      Icons.do_not_disturb_on,
+                                      size: 30,
+                                    ))
+                              ],
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -228,7 +218,7 @@ class Foodsinfo extends StatelessWidget {
                                 child: Text(
                                   "Total Price ${foodInfo["total price"]} Riyals"
                                   "",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: AppColors.brownColor,
                                       fontSize: 18),
                                 ),
@@ -238,8 +228,8 @@ class Foodsinfo extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 100),
-                    FillButton(
+                    const SizedBox(height: 100),
+                    const FillButton(
                         text: "Make Order",
                         icon: Icons.arrow_circle_right_outlined,
                         route: Cartscreen())

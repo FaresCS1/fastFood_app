@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/features/home/pages/home_screen.dart';
 
@@ -22,44 +21,40 @@ class SignupScreen extends StatelessWidget {
         color: AppColors.bgColor,
         home: Scaffold(
           appBar: AppBar(
-            leading: backIcon(Icons.arrow_back_ios, ChooseEntry()),
+            leading: backIcon(Icons.arrow_back_ios, const ChooseEntry()),
           ),
           body: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Container(
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    appLogo(150, 150),
-                    Text(
-                      "Signup Screen",
-                      style: TextStyle(
-                          color: AppColors.midOrangeColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30),
-                    ),
-                    Text(
-                      "Signup Screen leads to Home Screen Because not connected.",
-                      style: TextStyle(
-                          color: AppColors.grayColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18),
-                    ),
-                    SizedBox(height: 10),
-                    TextFieldWidget(
-                        Icons.perm_identity, "full name", false, controller),
-                    TextFieldWidget(
-                        Icons.person, " username", false, controller),
-                    TextFieldWidget(
-                        Icons.add_location_alt, "location", false, controller),
-                    TextFieldWidget(Icons.dialpad, "phone", false, controller),
-                    TextFieldWidget(
-                        Icons.password, "password", true, controller),
-                    SizedBox(height: 30),
-                    fillButton(HomeScreen(), "Signup", Icons.arrow_forward),
-                  ],
-                ),
+            physics: const ClampingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  appLogo(150, 150),
+                  const Text(
+                    "Signup Screen",
+                    style: TextStyle(
+                        color: AppColors.midOrangeColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 30),
+                  ),
+                  const Text(
+                    "Signup Screen leads to Home Screen Because not connected.",
+                    style: TextStyle(
+                        color: AppColors.grayColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFieldWidget(
+                      Icons.perm_identity, "full name", false, controller),
+                  TextFieldWidget(Icons.person, " username", false, controller),
+                  TextFieldWidget(
+                      Icons.add_location_alt, "location", false, controller),
+                  TextFieldWidget(Icons.dialpad, "phone", false, controller),
+                  TextFieldWidget(Icons.password, "password", true, controller),
+                  const SizedBox(height: 30),
+                  fillButton(const HomeScreen(), "Signup", Icons.arrow_forward),
+                ],
               ),
             ),
           ),
