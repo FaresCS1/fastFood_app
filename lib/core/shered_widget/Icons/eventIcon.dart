@@ -17,10 +17,12 @@ class _IconEventState extends State<IconEvent> {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => widget.route),
-        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => widget.route),
+          );
+        });
       },
       icon: Icon(
         widget.icon,

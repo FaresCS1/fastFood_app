@@ -32,7 +32,7 @@ class Foodsinfo extends StatelessWidget {
               child: Column(
                 children: [
                   AppBar(
-                    leading: backIcon(Icons.arrow_back_ios, route),
+                    leading: coustmizeIconButton(Icons.arrow_back_ios, route),
                     backgroundColor: AppColors.whiteColor,
                     actions: [
                       IconButton(

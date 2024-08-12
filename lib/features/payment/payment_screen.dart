@@ -10,7 +10,7 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: backIcon(Icons.home, const HomeScreen()),
+        leading: coustmizeIconButton(Icons.home, const HomeScreen()),
       ),
       body: const Padding(
         padding: EdgeInsets.all(20),

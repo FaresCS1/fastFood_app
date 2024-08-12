@@ -28,7 +28,8 @@ class Cartscreen extends StatelessWidget {
                 children: [
                   AppBar(
                     backgroundColor: AppColors.bgColor,
-                    leading: backIcon(Icons.arrow_back_ios, const HomeScreen()),
+                    leading: coustmizeIconButton(
+                        Icons.arrow_back_ios, const HomeScreen()),
                   ),
                   Container(
                     height: 40,

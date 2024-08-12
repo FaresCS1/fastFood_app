@@ -46,7 +46,7 @@ class CartProvider extends ChangeNotifier {
   }
 
   void _notifyListeners() {
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }

@@ -17,10 +17,12 @@ class CategoryWidget extends StatelessWidget {
             itemCount: foodsCategory.length,
             itemBuilder: (context, index) => InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FoodsScreen()));
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FoodsScreen()));
+                    });
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),

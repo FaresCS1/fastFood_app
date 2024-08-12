@@ -18,7 +18,8 @@ class FoodsScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColors.bgColor,
-          leading: backIcon(Icons.arrow_back_ios, const HomeScreen()),
+          leading:
+              coustmizeIconButton(Icons.arrow_back_ios, const HomeScreen()),
           title: const Text(
             "Foods",
             style: TextStyle(
@@ -42,13 +43,15 @@ class FoodsScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Foodsinfo(
-                                  foodInfo: foodInfo[index],
-                                  route: const FoodsScreen(),
-                                )));
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Foodsinfo(
+                                    foodInfo: foodInfo[index],
+                                    route: const FoodsScreen(),
+                                  )));
+                    });
                   },
                   child: Card(
                     color: AppColors.whiteColor,

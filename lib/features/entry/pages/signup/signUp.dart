@@ -21,7 +21,7 @@ class SignupScreen extends StatelessWidget {
         color: AppColors.bgColor,
         home: Scaffold(
           appBar: AppBar(
-            leading: backIcon(Icons.arrow_back_ios, const ChooseEntry()),
+            leading: coustmizeIconButton(Icons.arrow_back_ios, const ChooseEntry()),
           ),
           body: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),

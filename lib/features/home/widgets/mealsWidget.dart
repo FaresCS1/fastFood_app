@@ -18,13 +18,15 @@ class MealsWidget extends StatelessWidget {
           itemCount: meals.length,
           itemBuilder: (context, index) => InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Foodsinfo(
-                            foodInfo: mealsInfo[index],
-                            route: const HomeScreen(),
-                          )));
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Foodsinfo(
+                              foodInfo: mealsInfo[index],
+                              route: const HomeScreen(),
+                            )));
+              });
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
