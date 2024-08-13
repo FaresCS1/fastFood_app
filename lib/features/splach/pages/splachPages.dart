@@ -11,29 +11,28 @@ class Splachpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => SplachProvider(),
-      child: Builder(
-        builder: (context) {
-          final splachProvider =
-              Provider.of<SplachProvider>(context, listen: false);
-          splachProvider.startDelayedNavigation();
-
-          return Material(
-            child: Consumer<SplachProvider>(
+    return Scaffold(
+      body: ChangeNotifierProvider(
+        create: (_) => SplachProvider(),
+        child: Builder(
+          builder: (context) {
+            final splachProvider =
+                Provider.of<SplachProvider>(context, listen: false);
+            splachProvider.startDelayedNavigation();
+            return Consumer<SplachProvider>(
               builder: (context, state, _) {
                 if (state.shouldNavigate) {
                   WidgetsBinding.instance!.addPostFrameCallback((_) {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => ChooseEntry()),
+                      MaterialPageRoute(
+                          builder: (context) => const ChooseEntry()),
                     );
                   });
                 }
-
                 return Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
                         AppColors.lightOrangeColor,
@@ -46,9 +45,9 @@ class Splachpage extends StatelessWidget {
                   child: Center(child: appLogoWhite(500, 500)),
                 );
               },
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

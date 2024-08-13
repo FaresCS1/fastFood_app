@@ -9,16 +9,15 @@ import '../../cart/pages/cartScreen.dart';
 
 class Foodsinfo extends StatelessWidget {
   final Map<dynamic, dynamic> foodInfo;
-  final dynamic route;
 
-  const Foodsinfo({super.key, required this.foodInfo, required this.route});
+  const Foodsinfo({super.key, required this.foodInfo});
 
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
     cartProvider.ResetBill();
-    return Material(
-      child: Container(
+    return Scaffold(
+      body: Container(
         color: AppColors.bgColor,
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -32,7 +31,7 @@ class Foodsinfo extends StatelessWidget {
               child: Column(
                 children: [
                   AppBar(
-                    leading: coustmizeIconButton(Icons.arrow_back_ios, route),
+                    leading: coustmizeIconButton(Icons.arrow_back_ios, null),
                     backgroundColor: AppColors.whiteColor,
                     actions: [
                       IconButton(
@@ -229,10 +228,11 @@ class Foodsinfo extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 100),
-                    const FillButton(
-                        text: "Make Order",
-                        icon: Icons.arrow_circle_right_outlined,
-                        route: Cartscreen())
+                    if (cartProvider.MyCart.isNotEmpty)
+                      FillButton(
+                          text: "Make Order",
+                          icon: Icons.arrow_circle_right_outlined,
+                          route: Cartscreen())
                   ],
                 ),
               ),

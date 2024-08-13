@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/models/app_info.dart';
-import 'package:untitled2/features/cart/pages/cartScreen.dart';
 
 class BottomBarProvider extends ChangeNotifier {
   int index = 0;

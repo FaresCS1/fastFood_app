@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/features/home/pages/home_screen.dart';
 
 import '../../../core/colors/appColors.dart';
 import '../../../core/models/foodMenu_info.dart';
@@ -24,7 +23,6 @@ class MealsWidget extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => Foodsinfo(
                               foodInfo: mealsInfo[index],
-                              route: const HomeScreen(),
                             )));
               });
             },

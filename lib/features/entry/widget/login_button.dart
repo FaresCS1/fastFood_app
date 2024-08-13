@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/features/entry/pages/login/login_screen.dart';
 
 import '../../../core/colors/appColors.dart';
 import '../../../core/models/app_info.dart';
 import '../../../core/models/user.dart';
-import '../../../core/shered_widget/dailog/dailog.dart';
 import '../../home/pages/home_screen.dart';
 
 Widget LoginButton(BuildContext context, List<Users> user,
@@ -22,24 +20,47 @@ Widget LoginButton(BuildContext context, List<Users> user,
           showDialog(
               context: context,
               builder: (BuildContext context) {
-                return DialogApp(
-                  title: 'Filed  Login',
-                  icon: Icons.disabled_by_default,
-                  color: AppColors.lightRedColor,
-                  textButton: 'Try !! >>',
-                  route: LoginScreen(),
+                return AlertDialog(
+                  title: Text('Filed Login'),
+                  icon: Icon(
+                    Icons.sentiment_very_dissatisfied,
+                    color: AppColors.lightRedColor,
+                    size: 100,
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        onHover: (value) =>
+                            TextStyle(color: AppColors.grayColor),
+                        child: Text("Try Agine"))
+                  ],
                 );
               });
         } else {
           showDialog(
               context: context,
               builder: (BuildContext context) {
-                return const DialogApp(
-                  title: 'Success  Login',
-                  icon: Icons.verified_user,
-                  color: Colors.greenAccent,
-                  textButton: 'Start Explore >>',
-                  route: HomeScreen(),
+                return AlertDialog(
+                  title: Text('Success  Login'),
+                  icon: Icon(
+                    Icons.sentiment_very_satisfied,
+                    color: Colors.greenAccent,
+                    size: 100,
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                        },
+                        onHover: (value) =>
+                            TextStyle(color: AppColors.grayColor),
+                        child: Text("Make your first order"))
+                  ],
                 );
               });
         }

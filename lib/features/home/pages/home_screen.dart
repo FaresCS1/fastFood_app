@@ -5,7 +5,6 @@ import 'package:untitled2/core/models/app_info.dart';
 import 'package:untitled2/core/shered_widget/bottomBar/bottomBar.dart';
 import 'package:untitled2/features/entry/pages/login/login_screen.dart';
 import 'package:untitled2/features/foods/pages/foods.dart';
-import 'package:untitled2/features/foods/pages/meals.dart';
 import 'package:untitled2/features/home/widgets/listviewWidget.dart';
 
 import '../../../core/provider/bottomBar_provider.dart';
@@ -23,13 +22,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => BottomBarProvider(),
-      child: Builder(
-        builder: (context) {
-          final bottomBarProvider = Provider.of<BottomBarProvider>(context);
-          return Scaffold(
-            body: Stack(
+    return Scaffold(
+      body: ChangeNotifierProvider(
+        create: (_) => BottomBarProvider(),
+        child: Builder(
+          builder: (context) {
+            final bottomBarProvider = Provider.of<BottomBarProvider>(context);
+            return Stack(
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
@@ -98,9 +97,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: AppColors.midOrangeColor,
                                 ),
                               ),
-                              subtitleWidget("Categories", const FoodsScreen()),
+                              subtitleWidget("Categories",
+                                  const FoodsScreen(type1: 'All')),
                               const CategoryWidget(),
-                              subtitleWidget("Meals", const MealsScreen()),
+                              subtitleWidget(
+                                  "Meals", const FoodsScreen(type1: 'Meals')),
                               const MealsWidget(),
                             ],
                           ),
@@ -113,9 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, state, _) =>
                         myBottombar(state, context)),
               ],
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

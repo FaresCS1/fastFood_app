@@ -17,9 +17,8 @@ class FillButton extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: InkWell(
         onTap: () {
-          WidgetsBinding.instance!.addPostFrameCallback((_) {
-            Navigator.push(
-              context,
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => route),
             );
           });

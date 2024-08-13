@@ -1,8 +1,10 @@
-List<dynamic> foodsCategory = [
-  "burger",
-  "fries",
-  "sandwich",
-  "drink",
+List foodsCategory = [
+  {"type": "All"},
+  {"type": "Meals"},
+  {"type": "Burger", "img": "assets/images/mainCategory/Burger.png"},
+  {"type": "Sandwich", "img": "assets/images/mainCategory/Sandwich.png"},
+  {"type": "Fries", "img": "assets/images/mainCategory/Fries.png"},
+  {"type": "Drinks", "img": "assets/images/mainCategory/Drink.png"},
 ];
 
 List<dynamic> meals = [
@@ -11,10 +13,9 @@ List<dynamic> meals = [
   "shawarma",
 ];
 
-
 List<dynamic> foodInfo = [
   {
-    "type": "burger",
+    "type": "Burger",
     "name": "Beef Burger",
     "img": "assets/images/burger/beefburger.png",
     "price": 18,
@@ -23,7 +24,7 @@ List<dynamic> foodInfo = [
     "total price": 18,
   },
   {
-    "type": "burger",
+    "type": "Burger",
     "name": "Chicken Burger",
     "img": "assets/images/burger/chikenburger.png",
     "price": 18,
@@ -32,7 +33,7 @@ List<dynamic> foodInfo = [
     "total price": 18,
   },
   {
-    "type": "burger",
+    "type": "Burger",
     "name": "Cheese Burger",
     "img": "assets/images/burger/cheesburger.png",
     "price": 20,
@@ -41,7 +42,7 @@ List<dynamic> foodInfo = [
     "total price": 20,
   },
   {
-    "type": "burger",
+    "type": "Burger",
     "name": "Double Beef Burger",
     "img": "assets/images/burger/doubleBburger.png",
     "price": 23,
@@ -50,7 +51,7 @@ List<dynamic> foodInfo = [
     "total price": 23,
   },
   {
-    "type": "burger",
+    "type": "Burger",
     "name": "Double Chicken Burger",
     "img": "assets/images/burger/doubleCburger.png",
     "price": 23,
@@ -59,7 +60,7 @@ List<dynamic> foodInfo = [
     "total price": 23,
   },
   {
-    "type": "sandwich",
+    "type": "Sandwich",
     "name": "Classic Hotdog Sandwich",
     "img": "assets/images/sandwich/classic_hotdog.png",
     "price": 10,
@@ -68,7 +69,7 @@ List<dynamic> foodInfo = [
     "total price": 10,
   },
   {
-    "type": "sandwich",
+    "type": "Sandwich",
     "name": "King Hotdog Sandwich",
     "img": "assets/images/sandwich/double_hotdog.png",
     "price": 14,
@@ -77,7 +78,7 @@ List<dynamic> foodInfo = [
     "total price": 14,
   },
   {
-    "type": "sandwich",
+    "type": "Sandwich",
     "name": "Classic Sandwich",
     "img": "assets/images/sandwich/sandwich.png",
     "price": 7,
@@ -86,7 +87,7 @@ List<dynamic> foodInfo = [
     "total price": 7,
   },
   {
-    "type": "sandwich",
+    "type": "Sandwich",
     "name": " Shawarma Sandwich",
     "img": "assets/images/sandwich/shawarma.png",
     "price": 7,
@@ -95,7 +96,7 @@ List<dynamic> foodInfo = [
     "total price": 7,
   },
   {
-    "type": "fries",
+    "type": "Fries",
     "name": "Fries",
     "img": "assets/images/fries/fries.png",
     "price": 5,
@@ -104,7 +105,7 @@ List<dynamic> foodInfo = [
     "total price": 5,
   },
   {
-    "type": "drinks",
+    "type": "Drinks",
     "name": "Coca cola Soda",
     "img": "assets/images/drinks/drink.png",
     "price": 3,
@@ -113,7 +114,7 @@ List<dynamic> foodInfo = [
     "total price": 3,
   },
   {
-    "type": "drinks",
+    "type": "Drinks",
     "name": "Apple Soda",
     "img": "assets/images/drinks/apple_drink.png",
     "price": 3,
@@ -121,11 +122,8 @@ List<dynamic> foodInfo = [
     "numOfItem": 1,
     "total price": 3,
   },
-];
-
-List<dynamic> mealsInfo = [
   {
-    "type": "meals",
+    "type": "Meals",
     "name": "Beef Burger Meal",
     "img": "assets/images/meals/beefburger.png",
     "price": 30,
@@ -134,7 +132,7 @@ List<dynamic> mealsInfo = [
     "total price": 30,
   },
   {
-    "type": "meals",
+    "type": "Meals",
     "name": "Fast Meal",
     "img": "assets/images/meals/fastmeal.png",
     "price": 20,
@@ -143,7 +141,37 @@ List<dynamic> mealsInfo = [
     "total price": 20,
   },
   {
-    "type": "meals",
+    "type": "Meals",
+    "name": "shawarma Meal",
+    "img": "assets/images/meals/shawarma.png",
+    "price": 18,
+    "rate": 4.5,
+    "numOfItem": 1,
+    "total price": 18,
+  },
+];
+
+List<dynamic> mealsInfo = [
+  {
+    "type": "Meals",
+    "name": "Beef Burger Meal",
+    "img": "assets/images/meals/beefburger.png",
+    "price": 30,
+    "rate": 4.5,
+    "numOfItem": 1,
+    "total price": 30,
+  },
+  {
+    "type": "Meals",
+    "name": "Fast Meal",
+    "img": "assets/images/meals/fastmeal.png",
+    "price": 20,
+    "rate": 4.5,
+    "numOfItem": 1,
+    "total price": 20,
+  },
+  {
+    "type": "Meals",
     "name": "shawarma Meal",
     "img": "assets/images/meals/shawarma.png",
     "price": 18,

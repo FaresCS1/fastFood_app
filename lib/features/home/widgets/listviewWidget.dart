@@ -14,43 +14,49 @@ class CategoryWidget extends StatelessWidget {
         child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            itemCount: foodsCategory.length,
-            itemBuilder: (context, index) => InkWell(
-                  onTap: () {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FoodsScreen()));
-                    });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: lightColors[index],
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      width: 100,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            "assets/images/mainCategory/${foodsCategory[index]}.png",
-                            width: 80,
-                            height: 80,
-                          ),
-                          Text(
-                            "${foodsCategory[index]}",
-                            style: const TextStyle(
-                                color: AppColors.bgColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20),
-                          )
-                        ],
-                      ),
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              final int startIndex = 2;
+              final int actualIndex = index + startIndex;
+              return InkWell(
+                onTap: () {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FoodsScreen(
+                                  type1: foodsCategory[actualIndex]["type"],
+                                )));
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      color: lightColors[index],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    width: 100,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          foodsCategory[actualIndex]["img"],
+                          width: 80,
+                          height: 80,
+                        ),
+                        Text(
+                          foodsCategory[actualIndex]["type"],
+                          style: const TextStyle(
+                              color: AppColors.bgColor,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20),
+                        )
+                      ],
                     ),
                   ),
-                )));
+                ),
+              );
+            }));
   }
 }

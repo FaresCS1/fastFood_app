@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/models/app_info.dart';
 import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
-import 'package:untitled2/features/home/pages/home_screen.dart';
 
 import 'card_info.dart';
 
@@ -15,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColors.bgColor,
-        leading: coustmizeIconButton(Icons.arrow_back, const HomeScreen()),
+        leading: coustmizeIconButton(Icons.arrow_back_ios, null),
         title: const Text(
           "Profile Information",
           style: TextStyle(
