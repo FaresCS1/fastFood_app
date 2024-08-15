@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:untitled2/core/models/user.dart';
 import 'package:untitled2/features/cart/pages/cartScreen.dart';
 import 'package:untitled2/features/home/pages/home_screen.dart';

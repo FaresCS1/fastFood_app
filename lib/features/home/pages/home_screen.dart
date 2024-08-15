@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
         create: (_) => BottomBarProvider(),
         child: Builder(
           builder: (context) {
-            final bottomBarProvider = Provider.of<BottomBarProvider>(context);
             return Stack(
               alignment: Alignment.bottomCenter,
               children: [

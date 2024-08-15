@@ -13,7 +13,6 @@ class CheckOutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double currentWidth = MediaQuery.of(context).size.width;
     double currentHeight = MediaQuery.of(context).size.height;
     final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
