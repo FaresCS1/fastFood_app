@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/provider/splach_provider.dart';
-import 'package:untitled2/features/entry/pages/choose_entry/chooseEntry.dart';
+import 'package:untitled2/features/entry/pages/login/login_screen.dart';
 
 import '../../../core/shered_widget/logo/logo.dart';
 
@@ -25,8 +25,7 @@ class Splachpage extends StatelessWidget {
                   WidgetsBinding.instance!.addPostFrameCallback((_) {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const ChooseEntry()),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   });
                 }

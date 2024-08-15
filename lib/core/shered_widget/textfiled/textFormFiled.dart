@@ -48,6 +48,8 @@ class _TextFieldState extends State<TextField> {
                   )
                 : null,
             hintText: widget.hinttext,
+            fillColor: AppColors.beigeColor,
+            filled: true,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
             ),
