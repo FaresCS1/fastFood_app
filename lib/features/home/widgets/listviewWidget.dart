@@ -9,8 +9,10 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return SizedBox(
-        height: 130,
+        height: currentHeight / 6.5,
         child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -25,7 +27,7 @@ class CategoryWidget extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => FoodsScreen(
-                                  type1: foodsCategory[actualIndex]["type"],
+                                  type: foodsCategory[actualIndex]["type"],
                                 )));
                   });
                 },
@@ -37,13 +39,13 @@ class CategoryWidget extends StatelessWidget {
                       color: lightColors[index],
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    width: 100,
+                    width: currentWidth / 4.25,
                     child: Column(
                       children: [
                         Image.asset(
                           foodsCategory[actualIndex]["img"],
-                          width: 80,
-                          height: 80,
+                          width: currentWidth / 4,
+                          height: currentHeight / 12,
                         ),
                         Text(
                           foodsCategory[actualIndex]["type"],

@@ -15,6 +15,8 @@ class MoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.bgColor,
@@ -26,11 +28,11 @@ class MoreScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 200,
+                height: currentWidth / 3,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    appLogo(100, 100),
+                    appLogo(currentWidth / 3, currentHeight / 8),
                     const Text(
                       "Fast food \n faster smiles!",
                       style: TextStyle(
@@ -43,7 +45,7 @@ class MoreScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 500,
+                height: currentHeight / 1.5,
                 child: ListView.separated(
                   separatorBuilder: (BuildContext context, int index) =>
                       const Divider(),

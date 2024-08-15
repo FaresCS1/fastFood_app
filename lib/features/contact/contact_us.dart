@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled2/features/more/pages/more_screen.dart';
 
 import '../../core/colors/appColors.dart';
 import '../../core/shered_widget/Icons/widgets/backIcon.dart';
@@ -11,10 +12,12 @@ class ContactUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
-        leading: coustmizeIconButton(Icons.arrow_back_ios, null),
+        leading: coustmizeIconButton(Icons.arrow_back_ios, MoreScreen()),
       ),
       body: Container(
         color: AppColors.bgColor,
@@ -24,7 +27,7 @@ class ContactUsScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 200,
+                  height: currentWidth / 3,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -40,9 +43,9 @@ class ContactUsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: currentHeight / 100),
                 SizedBox(
-                  height: 700,
+                  height: currentHeight / 1.5,
                   child: Column(
                     children: [
                       cardInfo("LinkedIn", "Fares omar", Icons.group),

@@ -25,7 +25,7 @@ Widget LoginButton(BuildContext context, List<Users> user,
                   icon: Icon(
                     Icons.sentiment_very_dissatisfied,
                     color: AppColors.lightRedColor,
-                    size: 100,
+                    size: MediaQuery.of(context).size.width / 3.5,
                   ),
                   actions: [
                     TextButton(
@@ -47,7 +47,7 @@ Widget LoginButton(BuildContext context, List<Users> user,
                   icon: Icon(
                     Icons.sentiment_very_satisfied,
                     color: Colors.greenAccent,
-                    size: 100,
+                    size: MediaQuery.of(context).size.width / 3.5,
                   ),
                   actions: [
                     TextButton(
@@ -79,10 +79,10 @@ Widget LoginButton(BuildContext context, List<Users> user,
               tileMode: TileMode.mirror),
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Login",
               style: TextStyle(
                   color: AppColors.bgColor,
@@ -90,7 +90,7 @@ Widget LoginButton(BuildContext context, List<Users> user,
                   fontSize: 25),
             ),
             SizedBox(
-              width: 10,
+              width: MediaQuery.of(context).size.width / 50,
             ),
             Icon(
               Icons.login,

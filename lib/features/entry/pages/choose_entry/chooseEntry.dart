@@ -11,14 +11,16 @@ class ChooseEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            appLogo(150, 150),
-            const SizedBox(height: 30),
+            appLogo(currentWidth / 3, currentHeight / 4),
+            SizedBox(height: currentHeight / 50),
             fillButton(LoginScreen(), "Login", Icons.login),
             fillButton(SignupScreen(), "Signup", Icons.arrow_forward),
             fillButton(

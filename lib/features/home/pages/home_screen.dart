@@ -22,6 +22,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (_) => BottomBarProvider(),
@@ -40,11 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(top: 30),
+                            margin: EdgeInsets.only(top: currentHeight / 25),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                appLogo(70, 70),
+                                appLogo(currentWidth / 6, currentHeight / 12),
                                 InkWell(
                                   onTap: () {
                                     if (curentUser?.address["city"] == null) {
@@ -65,15 +67,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: const TextStyle(fontSize: 20),
                                       ),
                                       curentUser?.address["city"] == null
-                                          ? const Icon(
+                                          ? Icon(
                                               Icons.login,
                                               color: AppColors.orangeColor,
-                                              size: 30,
+                                              size: currentWidth / 15,
                                             )
-                                          : const Icon(
+                                          : Icon(
                                               Icons.add_location_alt,
                                               color: AppColors.orangeColor,
-                                              size: 30,
+                                              size: currentWidth / 15,
                                             ),
                                     ],
                                   ),
@@ -81,12 +83,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: currentHeight / 50),
                           Column(
                             children: [
                               Container(
-                                height: 155,
-                                width: double.infinity,
+                                height: currentHeight / 6,
+                                width: currentWidth,
                                 decoration: BoxDecoration(
                                   image: const DecorationImage(
                                     fit: BoxFit.cover,
@@ -97,11 +99,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: AppColors.midOrangeColor,
                                 ),
                               ),
-                              subtitleWidget("Categories",
-                                  const FoodsScreen(type1: 'All')),
+                              subtitleWidget(
+                                  "Categories", FoodsScreen(type: 'All')),
                               const CategoryWidget(),
                               subtitleWidget(
-                                  "Meals", const FoodsScreen(type1: 'Meals')),
+                                  "Meals", FoodsScreen(type: 'Meals')),
                               const MealsWidget(),
                             ],
                           ),

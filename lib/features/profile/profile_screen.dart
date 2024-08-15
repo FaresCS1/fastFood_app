@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/models/app_info.dart';
 import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
+import 'package:untitled2/features/entry/pages/choose_entry/chooseEntry.dart';
+import 'package:untitled2/features/more/pages/more_screen.dart';
 
 import 'card_info.dart';
 
@@ -10,11 +12,13 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColors.bgColor,
-        leading: coustmizeIconButton(Icons.arrow_back_ios, null),
+        leading: coustmizeIconButton(Icons.arrow_back_ios, MoreScreen()),
+        actions: [coustmizeIconButton(Icons.logout_outlined, ChooseEntry())],
         title: const Text(
           "Profile Information",
           style: TextStyle(
@@ -32,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    const SizedBox(height: 10),
+                    SizedBox(height: currentHeight / 50),
                     Text(
                       curentUser!.username,
                       style: const TextStyle(
@@ -41,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                         color: AppColors.brownColor,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    SizedBox(height: currentHeight / 50),
                     Text(
                       curentUser!.name,
                       style: const TextStyle(

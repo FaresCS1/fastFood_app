@@ -13,17 +13,21 @@ class FillButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: InkWell(
         onTap: () {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => route),
             );
           });
         },
         child: Container(
+          width: currentWidth,
+          height: currentHeight / 15,
           padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -47,8 +51,8 @@ class FillButton extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontSize: 25),
               ),
-              const SizedBox(
-                width: 10,
+              SizedBox(
+                width: currentWidth / 50,
               ),
               Icon(
                 icon,

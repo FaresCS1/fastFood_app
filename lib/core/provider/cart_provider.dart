@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 class CartProvider extends ChangeNotifier {
   List<dynamic> MyCart = [];
   int totalBill = 0;
+  bool credit = true;
 
   void addToCart(dynamic item) {
     MyCart.add(item);
@@ -29,19 +30,31 @@ class CartProvider extends ChangeNotifier {
 
   void removeFromCart(dynamic item) {
     MyCart.remove(item);
+    TotalBill();
     _notifyListeners();
   }
 
-  void TotalBill() {
-    totalBill = 0;
+  int TotalBill() {
+    ResetBill();
     for (int i = 0; i < MyCart.length; i++) {
       totalBill += (MyCart[i]["total price"] as int);
     }
-    _notifyListeners();
+    return totalBill;
   }
 
   void ResetBill() {
     totalBill = 0;
+  }
+
+  void emptyCart() {
+    MyCart.clear();
+    print(MyCart.length);
+    TotalBill();
+    _notifyListeners();
+  }
+
+  void paymentWay() {
+    credit = !credit;
     _notifyListeners();
   }
 

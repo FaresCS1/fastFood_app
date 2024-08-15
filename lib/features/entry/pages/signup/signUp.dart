@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/features/entry/pages/choose_entry/chooseEntry.dart';
 import 'package:untitled2/features/home/pages/home_screen.dart';
 
 import '../../../../core/colors/appColors.dart';
@@ -17,7 +18,7 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: coustmizeIconButton(Icons.arrow_back_ios, null),
+        leading: coustmizeIconButton(Icons.arrow_back_ios, ChooseEntry()),
       ),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
@@ -25,7 +26,8 @@ class SignupScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              appLogo(150, 150),
+              appLogo(MediaQuery.of(context).size.width / 2,
+                  MediaQuery.of(context).size.height / 6),
               const Text(
                 "Signup Screen",
                 style: TextStyle(
@@ -40,7 +42,7 @@ class SignupScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontSize: 18),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: MediaQuery.of(context).size.height / 100),
               TextFieldWidget(
                   Icons.perm_identity, "full name", false, controller),
               TextFieldWidget(Icons.person, " username", false, controller),
@@ -48,7 +50,7 @@ class SignupScreen extends StatelessWidget {
                   Icons.add_location_alt, "location", false, controller),
               TextFieldWidget(Icons.dialpad, "phone", false, controller),
               TextFieldWidget(Icons.password, "password", true, controller),
-              const SizedBox(height: 30),
+              SizedBox(height: MediaQuery.of(context).size.height / 33),
               fillButton(const HomeScreen(), "Signup", Icons.arrow_forward),
             ],
           ),

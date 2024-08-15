@@ -31,7 +31,7 @@ class Splachpage extends StatelessWidget {
                   });
                 }
                 return Container(
-                  width: double.infinity,
+                  width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [

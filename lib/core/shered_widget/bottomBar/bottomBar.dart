@@ -23,10 +23,10 @@ Widget myBottombar(BottomBarProvider bottomBar, BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           bottomBarIcon(Icons.home, "Home", 0, bottomBar, context),
-          bottomBarIcon(Icons.reorder, "Orders", 1, bottomBar, context),
+          bottomBarIcon(Icons.local_offer, "Offers", 1, bottomBar, context),
           bottomBarIcon(Icons.add_shopping_cart, "Cart", 2, bottomBar, context),
           if (curentUser != null)
-            bottomBarIcon(Icons.more, "more", 3, bottomBar, context),
+            bottomBarIcon(Icons.more_horiz, "more", 3, bottomBar, context),
         ],
       ),
     ),

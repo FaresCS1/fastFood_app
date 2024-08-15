@@ -9,8 +9,10 @@ class MealsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return SizedBox(
-        height: 180,
+        height: currentHeight / 6,
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -33,13 +35,13 @@ class MealsWidget extends StatelessWidget {
                     color: AppColors.beigeColor,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  width: 300,
+                  width: currentWidth / 1.5,
                   child: Column(
                     children: [
                       Stack(
                         children: [
                           Container(
-                            height: 160,
+                            height: currentHeight / 6,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
@@ -47,8 +49,8 @@ class MealsWidget extends StatelessWidget {
                                         "assets/images/meals/${meals[index]}.png"))),
                           ),
                           Container(
-                            height: 40,
-                            width: 150,
+                            height: currentHeight / 20,
+                            width: currentWidth / 2.5,
                             decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomRight: Radius.circular(7),

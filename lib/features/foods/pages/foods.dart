@@ -5,21 +5,24 @@ import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
 import 'package:untitled2/features/foods/pages/foodsInfo.dart';
+import 'package:untitled2/features/home/pages/home_screen.dart';
 
 import '../../../core/models/foodMenu_info.dart';
 import '../../../core/provider/food_provider.dart';
 
 class FoodsScreen extends StatelessWidget {
-  final String type1;
-  const FoodsScreen({super.key, required this.type1});
+  late String type;
+  FoodsScreen({super.key, required this.type});
 
   @override
   Widget build(BuildContext context) {
+    double currentWidth = MediaQuery.of(context).size.width;
+    double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColors.bgColor,
-        leading: coustmizeIconButton(Icons.arrow_back_ios, null),
+        leading: coustmizeIconButton(Icons.arrow_back_ios, HomeScreen()),
         title: const Text(
           "Foods",
           style: TextStyle(
@@ -32,7 +35,7 @@ class FoodsScreen extends StatelessWidget {
       body: ChangeNotifierProvider(
         create: (context) {
           final foodProvider = FoodProvider();
-          foodProvider.selectedType(type1);
+          foodProvider.selectedType(type);
           return foodProvider;
         },
         child: Builder(
@@ -45,7 +48,7 @@ class FoodsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: 50,
+                      height: currentHeight / 18,
                       child: ListView.builder(
                           controller: foodProvider.scrollController,
                           itemCount: foodsCategory.length,
@@ -61,9 +64,9 @@ class FoodsScreen extends StatelessWidget {
                                       foodsCategory[index]["type"]);
                                 },
                                 child: Container(
-                                  width: 100,
+                                  width: currentWidth / 4,
                                   decoration: BoxDecoration(
-                                    color: foodProvider.typea !=
+                                    color: foodProvider.type !=
                                             foodsCategory[index]["type"]
                                         ? AppColors.whiteColor
                                         : AppColors.orangeColor,
@@ -73,7 +76,7 @@ class FoodsScreen extends StatelessWidget {
                                     child: Text(
                                       foodsCategory[index]["type"],
                                       style: TextStyle(
-                                          color: foodProvider.typea !=
+                                          color: foodProvider.type !=
                                                   foodsCategory[index]["type"]
                                               ? AppColors.grayColor
                                               : AppColors.whiteColor,
@@ -112,8 +115,8 @@ class FoodsScreen extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     foodProvider.foodItem[index]["img"],
-                                    width: 130,
-                                    height: 130,
+                                    width: currentWidth / 3,
+                                    height: currentHeight / 7,
                                   ),
                                   Text(
                                     foodProvider.foodItem[index]["name"],

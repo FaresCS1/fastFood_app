@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/provider/cart_provider.dart';
-
+import 'package:untitled2/features/splach/pages/splachPages.dart';
 import 'core/provider/user_provider.dart';
-import 'features/splach/pages/splachPages.dart';
 
 void main() {
   runApp(

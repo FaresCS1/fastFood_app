@@ -5,7 +5,7 @@ import 'package:untitled2/features/terms_conditions/terms_screen.dart';
 import '../../features/contact/contact_us.dart';
 
 List moreInfo = [
-  {"name": "Menu", "route": FoodsScreen(type1: 'All')},
+  {"name": "Menu", "route": FoodsScreen(type: 'All')},
   {"name": "My Profile", "route": ProfileScreen()},
   {"name": "Terms and Conditions", "route": TermsConditionScreen()},
   {"name": "Contact Us", "route": ContactUsScreen()},

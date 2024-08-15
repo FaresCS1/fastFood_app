@@ -4,13 +4,13 @@ import '../models/foodMenu_info.dart';
 
 class FoodProvider extends ChangeNotifier {
   List foodItem = foodInfo;
-  String typea = "";
+  String type = "";
   int indexType = 0;
 
   ScrollController scrollController = ScrollController();
 
   void selectedType(String selectedType) {
-    typea = selectedType;
+    type = selectedType;
     foodType();
     notifyListeners();
   }
@@ -32,10 +32,10 @@ class FoodProvider extends ChangeNotifier {
   }
 
   List foodType() {
-    if (typea != "All") {
+    if (type != "All") {
       List filteredList = [];
       for (int i = 0; i < foodInfo.length; ++i) {
-        if (foodInfo[i]["type"] == typea) {
+        if (foodInfo[i]["type"] == type) {
           filteredList.add(foodInfo[i]);
         }
       }
