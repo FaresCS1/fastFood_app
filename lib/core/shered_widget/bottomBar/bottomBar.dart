@@ -1,34 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/models/app_info.dart';
 import 'package:untitled2/core/provider/bottomBar_provider.dart';
 import 'package:untitled2/core/shered_widget/bottomBar/iconBottomBar.dart';
 
+import '../../classes/shared_preferences/SharedPrefHelper.dart';
+import '../../dimensions/myDimensions.dart';
+
 Widget myBottombar(BottomBarProvider bottomBar, BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(15),
-    child: Container(
-      height: 90,
-      decoration: BoxDecoration(
-          color: AppColors.orangeColor,
-          borderRadius: BorderRadius.circular(30),
-          boxShadow: [
-            BoxShadow(
-                color: AppColors.lightOrangeColor,
-                offset: Offset.zero,
-                blurRadius: 15,
-                blurStyle: BlurStyle.outer)
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          bottomBarIcon(Icons.home, "Home", 0, bottomBar, context),
-          bottomBarIcon(Icons.local_offer, "Offers", 1, bottomBar, context),
-          bottomBarIcon(Icons.add_shopping_cart, "Cart", 2, bottomBar, context),
-          if (curentUser != null)
-            bottomBarIcon(Icons.more_horiz, "more", 3, bottomBar, context),
-        ],
-      ),
+  return Container(
+    height: dimensionHeight(0.10),
+    decoration: const BoxDecoration(
+      color: AppColors.whiteColor,
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        bottomBarIcon(Icons.home, "Home", 0, bottomBar, context),
+        bottomBarIcon(Icons.local_offer, "Offers", 1, bottomBar, context),
+        if (SharedPrefsHelper.getBool("login")!)
+          SizedBox(width: dimensionWidth(0.15)),
+        bottomBarIcon(Icons.restaurant_menu, "Menu", 2, bottomBar, context),
+        if (SharedPrefsHelper.getBool("login")!)
+          bottomBarIcon(Icons.more_horiz, "more", 3, bottomBar, context),
+      ],
     ),
   );
 }

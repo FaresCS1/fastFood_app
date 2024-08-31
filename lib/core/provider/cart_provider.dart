@@ -1,20 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter/material.dart';
+
+import '../colors/appColors.dart';
+import '../constants/myRoutes.dart';
+import '../shered_widget/dialog/customized_dialog.dart';
 
 class CartProvider extends ChangeNotifier {
-  List<dynamic> MyCart = [];
+  List<dynamic> myCart = [];
   int totalBill = 0;
   bool credit = true;
 
   void addToCart(dynamic item) {
-    MyCart.add(item);
-    _notifyListeners();
+    myCart.add(item);
+    notifyListeners();
   }
 
   void moreItem(dynamic item) {
     item["numOfItem"] = item["numOfItem"] + 1;
     item["total price"] = item["total price"] + item["price"];
-    _notifyListeners();
+    notifyListeners();
   }
 
   void lessItem(dynamic item) {
@@ -25,42 +30,54 @@ class CartProvider extends ChangeNotifier {
       item["numOfItem"] = item["numOfItem"] - 1;
       item["total price"] = item["total price"] - item["price"];
     }
-    _notifyListeners();
+    notifyListeners();
   }
 
   void removeFromCart(dynamic item) {
-    MyCart.remove(item);
-    TotalBill();
-    _notifyListeners();
+    myCart.remove(item);
+    getTotalBill();
+    notifyListeners();
   }
 
-  int TotalBill() {
-    ResetBill();
-    for (int i = 0; i < MyCart.length; i++) {
-      totalBill += (MyCart[i]["total price"] as int);
+  int getTotalBill() {
+    resetBill();
+    for (int i = 0; i < myCart.length; i++) {
+      totalBill += (myCart[i]["total price"] as int);
     }
+    notifyListeners();
     return totalBill;
   }
 
-  void ResetBill() {
+  void resetBill() {
+    notifyListeners();
     totalBill = 0;
   }
 
+  Future<void> sendOrder(BuildContext context) async {
+    resetBill();
+    emptyCart();
+    await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return const SuccessDialog(
+              color: AppColors.orangeColor,
+              icon: Icons.fastfood,
+              content: "success order Welcome To Fast Food App",
+              title: "Successfully Send Order",
+              textButton: "Home",
+              route: homeRoute);
+        });
+  }
+
   void emptyCart() {
-    MyCart.clear();
-    print(MyCart.length);
-    TotalBill();
-    _notifyListeners();
+    myCart.clear();
+    getTotalBill();
+    notifyListeners();
   }
 
   void paymentWay() {
     credit = !credit;
-    _notifyListeners();
-  }
-
-  void _notifyListeners() {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      notifyListeners();
-    });
+    notifyListeners();
   }
 }

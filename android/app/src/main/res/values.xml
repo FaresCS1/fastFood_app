@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="google_app_id">796551533156</string>
+    <string name="google_api_key">AIzaSyBvhNpSX-xgSs0QwaQaae9TlIiyKGwRt8w</string>
+    <string name="project_id">fastfood-fac31</string>
+    <string name="firebase_storage_bucket">fastfood-fac31.appspot.com</string>
+    <string name="messaging_sender_id">796551533156</string>
+    <string name="app_id">1:796551533156:android:9e848ffb08f9697a71c571</string>
+</resources>

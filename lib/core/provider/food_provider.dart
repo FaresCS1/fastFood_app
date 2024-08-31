@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/foodMenu_info.dart';
 
 class FoodProvider extends ChangeNotifier {
-  List foodItem = foodInfo;
+  List foodItem = allFoodInfo;
   String type = "";
   int indexType = 0;
 
@@ -31,18 +31,20 @@ class FoodProvider extends ChangeNotifier {
     );
   }
 
-  List foodType() {
-    if (type != "All") {
-      List filteredList = [];
-      for (int i = 0; i < foodInfo.length; ++i) {
-        if (foodInfo[i]["type"] == type) {
-          filteredList.add(foodInfo[i]);
-        }
-      }
-      foodItem = filteredList;
-      return foodItem;
+  void foodType() {
+    if (type == "Meals") {
+      foodItem = mealsInfo;
+    } else if (type == "Burger") {
+      foodItem = burgerInfo;
+    } else if (type == "Sandwich") {
+      foodItem = sandwichInfo;
+    } else if (type == "Fries") {
+      foodItem = friesInfo;
+    } else if (type == "Drinks") {
+      foodItem = drinksInfo;
+    } else {
+      //All food
+      foodItem = allFoodInfo;
     }
-    foodItem = foodInfo;
-    return foodInfo;
   }
 }

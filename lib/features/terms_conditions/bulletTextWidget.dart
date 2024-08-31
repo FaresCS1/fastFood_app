@@ -11,7 +11,7 @@ Widget pointText(String text) {
         Expanded(
             child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.blackColor,
             fontSize: 18,
           ),

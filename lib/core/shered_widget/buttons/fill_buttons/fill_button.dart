@@ -1,34 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled2/core/dimensions/myDimensions.dart';
 import '../../../colors/appColors.dart';
 
 class FillButton extends StatelessWidget {
-  final dynamic route;
   final String text;
   final IconData icon;
+  final String route;
 
   const FillButton(
       {super.key, required this.text, required this.icon, required this.route});
 
   @override
   Widget build(BuildContext context) {
-    double currentWidth = MediaQuery.of(context).size.width;
-    double currentHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: InkWell(
         onTap: () {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => route),
-            );
-          });
+          Navigator.of(context).pushNamed(route);
         },
         child: Container(
-          width: currentWidth,
-          height: currentHeight / 15,
-          padding: const EdgeInsets.all(10),
+          padding: EdgeInsets.all(dimensionWidth(0.03)),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -46,13 +41,13 @@ class FillButton extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: const TextStyle(
+                style: TextStyle(
                     color: AppColors.bgColor,
                     fontWeight: FontWeight.w500,
-                    fontSize: 25),
+                    fontSize: dimensionFontSize(20)),
               ),
               SizedBox(
-                width: currentWidth / 50,
+                width: dimensionWidth(0.06),
               ),
               Icon(
                 icon,

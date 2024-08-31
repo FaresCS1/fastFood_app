@@ -1,19 +1,33 @@
-List foodsCategory = [
-  {"type": "All"},
-  {"type": "Meals"},
-  {"type": "Burger", "img": "assets/images/mainCategory/Burger.png"},
-  {"type": "Sandwich", "img": "assets/images/mainCategory/Sandwich.png"},
-  {"type": "Fries", "img": "assets/images/mainCategory/Fries.png"},
-  {"type": "Drinks", "img": "assets/images/mainCategory/Drink.png"},
+List<dynamic> mealsInfo = [
+  {
+    "type": "Meals",
+    "name": "Beef Burger Meal",
+    "img": "assets/images/meals/beefburger.png",
+    "price": 30,
+    "rate": 4.5,
+    "numOfItem": 1,
+    "total price": 30,
+  },
+  {
+    "type": "Meals",
+    "name": "Fast Meal",
+    "img": "assets/images/meals/fastmeal.png",
+    "price": 20,
+    "rate": 4.5,
+    "numOfItem": 1,
+    "total price": 20,
+  },
+  {
+    "type": "Meals",
+    "name": "shawarma Meal",
+    "img": "assets/images/meals/shawarma.png",
+    "price": 18,
+    "rate": 4.5,
+    "numOfItem": 1,
+    "total price": 18,
+  },
 ];
-
-List<dynamic> meals = [
-  "beefburger",
-  "fastmeal",
-  "shawarma",
-];
-
-List<dynamic> foodInfo = [
+List<dynamic> burgerInfo = [
   {
     "type": "Burger",
     "name": "Beef Burger",
@@ -59,6 +73,8 @@ List<dynamic> foodInfo = [
     "numOfItem": 1,
     "total price": 23,
   },
+];
+List<dynamic> sandwichInfo = [
   {
     "type": "Sandwich",
     "name": "Classic Hotdog Sandwich",
@@ -95,15 +111,8 @@ List<dynamic> foodInfo = [
     "numOfItem": 1,
     "total price": 7,
   },
-  {
-    "type": "Fries",
-    "name": "Fries",
-    "img": "assets/images/fries/fries.png",
-    "price": 5,
-    "rate": 4.5,
-    "numOfItem": 1,
-    "total price": 5,
-  },
+];
+List<dynamic> drinksInfo = [
   {
     "type": "Drinks",
     "name": "Coca cola Soda",
@@ -122,61 +131,40 @@ List<dynamic> foodInfo = [
     "numOfItem": 1,
     "total price": 3,
   },
+];
+List<dynamic> friesInfo = [
   {
-    "type": "Meals",
-    "name": "Beef Burger Meal",
-    "img": "assets/images/meals/beefburger.png",
-    "price": 30,
+    "type": "Fries",
+    "name": "Fries",
+    "img": "assets/images/fries/fries.png",
+    "price": 5,
     "rate": 4.5,
     "numOfItem": 1,
-    "total price": 30,
-  },
-  {
-    "type": "Meals",
-    "name": "Fast Meal",
-    "img": "assets/images/meals/fastmeal.png",
-    "price": 20,
-    "rate": 4.5,
-    "numOfItem": 1,
-    "total price": 20,
-  },
-  {
-    "type": "Meals",
-    "name": "shawarma Meal",
-    "img": "assets/images/meals/shawarma.png",
-    "price": 18,
-    "rate": 4.5,
-    "numOfItem": 1,
-    "total price": 18,
+    "total price": 5,
   },
 ];
 
-List<dynamic> mealsInfo = [
-  {
-    "type": "Meals",
-    "name": "Beef Burger Meal",
-    "img": "assets/images/meals/beefburger.png",
-    "price": 30,
-    "rate": 4.5,
-    "numOfItem": 1,
-    "total price": 30,
-  },
-  {
-    "type": "Meals",
-    "name": "Fast Meal",
-    "img": "assets/images/meals/fastmeal.png",
-    "price": 20,
-    "rate": 4.5,
-    "numOfItem": 1,
-    "total price": 20,
-  },
-  {
-    "type": "Meals",
-    "name": "shawarma Meal",
-    "img": "assets/images/meals/shawarma.png",
-    "price": 18,
-    "rate": 4.5,
-    "numOfItem": 1,
-    "total price": 18,
-  },
+List<dynamic> allFoodInfo = [
+  ...mealsInfo,
+  ...burgerInfo,
+  ...sandwichInfo,
+  ...drinksInfo,
+  ...friesInfo,
+];
+
+List foodsCategory = [
+  {"type": "All"},
+  {"type": "Meals"},
+  {"type": "Burger", "img": "assets/images/mainCategory/Burger.png"},
+  {"type": "Sandwich", "img": "assets/images/mainCategory/Sandwich.png"},
+  {"type": "Fries", "img": "assets/images/mainCategory/Fries.png"},
+  {"type": "Drinks", "img": "assets/images/mainCategory/Drink.png"},
+];
+
+List offersList = [
+  {"img": "assets/images/offer/ads_cover.jpg"},
+  {"img": "assets/images/offer/bestOrder.jpg"},
+  {"img": "assets/images/offer/spicalMnue.jpg"},
+  {"img": "assets/images/offer/offer2.jpg"},
+  {"img": "assets/images/offer/hotdogOffer.jpg"}
 ];

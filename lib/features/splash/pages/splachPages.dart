@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/provider/splach_provider.dart';
-import 'package:untitled2/features/entry/pages/login/login_screen.dart';
+import 'package:untitled2/core/provider/user_provider.dart';
 
+import '../../../core/classes/shared_preferences/SharedPrefHelper.dart';
+import '../../../core/constants/myRoutes.dart';
 import '../../../core/shered_widget/logo/logo.dart';
 
-class Splachpage extends StatelessWidget {
-  const Splachpage({Key? key}) : super(key: key);
+class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (_) => SplachProvider(),
@@ -22,12 +25,21 @@ class Splachpage extends StatelessWidget {
             return Consumer<SplachProvider>(
               builder: (context, state, _) {
                 if (state.shouldNavigate) {
-                  WidgetsBinding.instance!.addPostFrameCallback((_) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    );
-                  });
+                  final dynamic route;
+                  if (SharedPrefsHelper.getBool("login") != null) {
+                    route = SharedPrefsHelper.getBool("login")!
+                        ? homeRoute
+                        : loginRoute;
+                    WidgetsBinding.instance!.addPostFrameCallback((_) {
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil(route, (route) => false);
+                    });
+                  } else {
+                    WidgetsBinding.instance!.addPostFrameCallback((_) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          loginRoute, (route) => false);
+                    });
+                  }
                 }
                 return Container(
                   width: MediaQuery.of(context).size.width,

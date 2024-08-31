@@ -1,15 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/models/app_info.dart';
+import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/provider/user_provider.dart';
 import 'package:untitled2/core/shered_widget/bottomBar/bottomBar.dart';
-import 'package:untitled2/features/entry/pages/login/login_screen.dart';
-import 'package:untitled2/features/foods/pages/foods.dart';
 import 'package:untitled2/features/home/widgets/listviewWidget.dart';
 
+import '../../../core/classes/shared_preferences/SharedPrefHelper.dart';
+import '../../../core/dimensions/myDimensions.dart';
 import '../../../core/provider/bottomBar_provider.dart';
 import '../../../core/shered_widget/logo/logo.dart';
 import '../../../core/shered_widget/subtitleButton/SubtitlebuttonWidget.dart';
+import '../../offers/widget/offersWidget.dart';
 import '../widgets/mealsWidget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,102 +25,98 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    double currentWidth = MediaQuery.of(context).size.width;
-    double currentHeight = MediaQuery.of(context).size.height;
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
-      body: ChangeNotifierProvider(
-        create: (_) => BottomBarProvider(),
-        child: Builder(
-          builder: (context) {
-            return Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Container(
-                  color: AppColors.bgColor,
-                  height: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: currentHeight / 25),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                appLogo(currentWidth / 6, currentHeight / 12),
-                                InkWell(
-                                  onTap: () {
-                                    if (curentUser?.address["city"] == null) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => LoginScreen(),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        curentUser?.address["city"] == null
-                                            ? "Login now !!"
-                                            : curentUser?.address["city"],
-                                        style: const TextStyle(fontSize: 20),
-                                      ),
-                                      curentUser?.address["city"] == null
-                                          ? Icon(
-                                              Icons.login,
-                                              color: AppColors.orangeColor,
-                                              size: currentWidth / 15,
-                                            )
-                                          : Icon(
-                                              Icons.add_location_alt,
-                                              color: AppColors.orangeColor,
-                                              size: currentWidth / 15,
-                                            ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: currentHeight / 50),
-                          Column(
-                            children: [
-                              Container(
-                                height: currentHeight / 6,
-                                width: currentWidth,
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        "assets/images/ads_cover.jpg"),
-                                  ),
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: AppColors.midOrangeColor,
-                                ),
-                              ),
-                              subtitleWidget(
-                                  "Categories", FoodsScreen(type: 'All')),
-                              const CategoryWidget(),
-                              subtitleWidget(
-                                  "Meals", FoodsScreen(type: 'Meals')),
-                              const MealsWidget(),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+      backgroundColor: AppColors.bgColor,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FirebaseAuth.instance.currentUser != null
+          ? InkWell(
+              onTap: () {
+                WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  Navigator.of(context).pushNamed(cartRoute);
+                });
+              },
+              child: Container(
+                height: dimensionHeight(0.15),
+                width: dimensionWidth(0.15),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.orangeColor,
                 ),
-                Consumer<BottomBarProvider>(
-                    builder: (context, state, _) =>
-                        myBottombar(state, context)),
+                child: Icon(
+                  Icons.add_shopping_cart,
+                  color: AppColors.whiteColor,
+                  size: dimensionWidth(0.10),
+                ),
+              ),
+            )
+          : null,
+      appBar: AppBar(
+        backgroundColor: AppColors.bgColor,
+        leading: appLogo(dimensionWidth(0.20), dimensionHeight(0.20)),
+        actions: [
+          InkWell(
+            onTap: () {
+              SharedPrefsHelper.getBool("login")!
+                  ? Navigator.of(context).pushNamed(profileRoute)
+                  : Navigator.of(context)
+                      .pushNamedAndRemoveUntil(loginRoute, (route) => false);
+            },
+            child: Row(
+              children: [
+                Text(
+                  SharedPrefsHelper.getBool("login")!
+                      ? SharedPrefsHelper.getString("location")!
+                      : "Login now",
+                  style: TextStyle(fontSize: dimensionFontSize(18)),
+                ),
+                SharedPrefsHelper.getBool("login")!
+                    ? Icon(
+                        Icons.add_location_alt,
+                        color: AppColors.orangeColor,
+                        size: dimensionWidth(0.10),
+                      )
+                    : Icon(
+                        Icons.login,
+                        color: AppColors.orangeColor,
+                        size: dimensionWidth(0.10),
+                      ),
               ],
-            );
-          },
-        ),
+            ),
+          ),
+        ],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SingleChildScrollView(
+            child: Container(
+              height: dimensionHeight(0.75),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              color: AppColors.bgColor,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const OffersWidget(dirHorizontal: true),
+                    subtitleWidget("Categories", menuRoute),
+                    const CategoryWidget(),
+                    subtitleWidget("Meals", menuRoute),
+                    const MealsWidget(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          ChangeNotifierProvider(
+              create: (_) => BottomBarProvider(),
+              child: Consumer<BottomBarProvider>(
+                  builder: (context, bottomBarProvider, _) {
+                return Builder(builder: (context) {
+                  bottomBarProvider.Index = 0;
+                  return myBottombar(bottomBarProvider, context);
+                });
+              }))
+        ],
       ),
     );
   }

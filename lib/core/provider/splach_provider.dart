@@ -5,7 +5,7 @@ class SplachProvider extends ChangeNotifier {
 
   Future<void> startDelayedNavigation() {
     return Future.delayed(
-      const Duration(seconds: 5),
+      const Duration(seconds: 3),
       () {
         shouldNavigate = true;
         notifyListeners();

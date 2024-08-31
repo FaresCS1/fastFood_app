@@ -1,83 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';
 import '../../../core/models/foodMenu_info.dart';
-import '../../foods/pages/foodsInfo.dart';
+import '../../foods/pages/menu.dart';
 
 class MealsWidget extends StatelessWidget {
   const MealsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double currentWidth = MediaQuery.of(context).size.width;
-    double currentHeight = MediaQuery.of(context).size.height;
     return SizedBox(
-        height: currentHeight / 6,
         child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: meals.length,
-          itemBuilder: (context, index) => InkWell(
-            onTap: () {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Foodsinfo(
-                              foodInfo: mealsInfo[index],
-                            )));
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.beigeColor,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  width: currentWidth / 1.5,
-                  child: Column(
-                    children: [
-                      Stack(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: mealsInfo.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(foodInfoRoute, arguments: mealsInfo[index]);
+                },
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: dimensionHeight(0.01)),
+                  child: Container(
+                      height: dimensionHeight(0.15),
+                      decoration: BoxDecoration(
+                        color: AppColors.whiteColor,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: currentHeight / 6,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        "assets/images/meals/${meals[index]}.png"))),
+                            height: dimensionHeight(0.15),
+                            width: dimensionWidth(0.60),
+                            child: Image.asset(
+                              mealsInfo[index]["img"],
+                              width: dimensionWidth(0.60),
+                            ),
                           ),
                           Container(
-                            height: currentHeight / 20,
-                            width: currentWidth / 2.5,
+                            height: dimensionHeight(0.15),
+                            width: dimensionWidth(0.30),
                             decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomRight: Radius.circular(7),
                                     topRight: Radius.circular(7)),
-                                color: AppColors.brownColor),
-                            child: Center(
-                                child: Row(
+                                color: AppColors.whiteColor),
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                const Icon(
-                                  Icons.fastfood,
-                                  color: AppColors.bgColor,
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.fastfood,
+                                      color: AppColors.orangeColor,
+                                      size: dimensionWidth(0.05),
+                                    ),
+                                    SizedBox(
+                                      width: dimensionWidth(0.20),
+                                      child: Text(
+                                        "${mealsInfo[index]["name"]} meal",
+                                        style: TextStyle(
+                                            fontSize: dimensionFontSize(14),
+                                            color: AppColors.orangeColor),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  "${meals[index]} meal",
-                                  style: const TextStyle(
-                                      fontSize: 16, color: AppColors.bgColor),
-                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: AppColors.yellowColor,
+                                      size: dimensionWidth(0.05),
+                                    ),
+                                    SizedBox(
+                                        width: dimensionWidth(0.20),
+                                        child: Text(
+                                          "4.5",
+                                          style: TextStyle(
+                                              fontSize: dimensionFontSize(14),
+                                              color: AppColors.orangeColor),
+                                        )),
+                                  ],
+                                )
                               ],
-                            )),
+                            ),
                           ),
                         ],
-                      ),
-                    ],
-                  )),
-            ),
-          ),
-        ));
+                      )),
+                ),
+              );
+            }));
   }
 }

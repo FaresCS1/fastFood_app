@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/features/foods/pages/foods.dart';
+import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';
 import '../../../core/models/foodMenu_info.dart';
@@ -9,10 +10,8 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double currentWidth = MediaQuery.of(context).size.width;
-    double currentHeight = MediaQuery.of(context).size.height;
     return SizedBox(
-        height: currentHeight / 6.5,
+        height: dimensionHeight(0.15),
         child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -22,37 +21,38 @@ class CategoryWidget extends StatelessWidget {
               final int actualIndex = index + startIndex;
               return InkWell(
                 onTap: () {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FoodsScreen(
-                                  type: foodsCategory[actualIndex]["type"],
-                                )));
-                  });
+                  print(foodsCategory[actualIndex]["type"]);
+                  Navigator.of(context).pushNamed(menuRoute,
+                      arguments: foodsCategory[actualIndex]["type"]);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: dimensionWidth(0.02)),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding:
+                        EdgeInsets.symmetric(vertical: dimensionHeight(0.02)),
                     decoration: BoxDecoration(
                       color: lightColors[index],
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    width: currentWidth / 4.25,
+                    width: dimensionWidth(0.25),
                     child: Column(
                       children: [
-                        Image.asset(
-                          foodsCategory[actualIndex]["img"],
-                          width: currentWidth / 4,
-                          height: currentHeight / 12,
+                        SizedBox(
+                          height: dimensionHeight(0.07),
+                          child: Image.asset(
+                            foodsCategory[actualIndex]["img"],
+                          ),
                         ),
-                        Text(
-                          foodsCategory[actualIndex]["type"],
-                          style: const TextStyle(
-                              color: AppColors.bgColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20),
+                        SizedBox(
+                          height: dimensionHeight(0.03),
+                          child: Text(
+                            foodsCategory[actualIndex]["type"],
+                            style: TextStyle(
+                                color: AppColors.bgColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: dimensionFontSize(18)),
+                          ),
                         )
                       ],
                     ),

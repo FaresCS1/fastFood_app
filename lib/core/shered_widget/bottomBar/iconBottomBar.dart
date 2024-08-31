@@ -1,40 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
+import 'package:untitled2/core/constants/appDimension.dart';
 import 'package:untitled2/core/provider/bottomBar_provider.dart';
+
+import '../../dimensions/myDimensions.dart';
 
 Widget bottomBarIcon(IconData icon, String lable, int index,
     BottomBarProvider bottomBarProvider, BuildContext context) {
   return InkWell(
     onTap: () {
-      bottomBarProvider.OnSelectedIconBar(index, context);
-
-      print("selected index $index");
+      bottomBarProvider.updateIndex(index, context);
     },
     child: Container(
-      height: 70,
-      width: 70,
+      height: dimensionHeight(0.15),
+      width: dimensionWidth(0.15),
       decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: bottomBarProvider.index == index
-              ? AppColors.whiteColor
+          color: bottomBarProvider.Index == index
+              ? AppColors.lightGrayColor
               : Colors.transparent),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             icon,
-            color: bottomBarProvider.index == index
+            color: bottomBarProvider.Index == index
                 ? AppColors.orangeColor
-                : AppColors.whiteColor,
-            size: 30,
+                : AppColors.lightGrayColor,
+            size: dimensionWidth(0.08),
           ),
           Text(
             lable,
             style: TextStyle(
-              fontSize: 14,
-              color: bottomBarProvider.index == index
+              fontSize: dimensionFontSize(10),
+              color: bottomBarProvider.Index == index
                   ? AppColors.orangeColor
-                  : AppColors.whiteColor,
+                  : AppColors.lightGrayColor,
             ),
           )
         ],

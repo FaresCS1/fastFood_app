@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/core/models/app_info.dart';
+
+import '../constants/myRoutes.dart';
 
 class BottomBarProvider extends ChangeNotifier {
-  int index = 0;
-  bool asUser = true;
+  int Index = 0;
+  List<dynamic> Pages = [homeRoute, offersRoute, menuRoute, moreRoute];
 
-  void OnSelectedIconBar(int index, BuildContext context) {
-    this.index = index;
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Pages[index]));
-    notifyListeners();
+  void updateIndex(int index, BuildContext context) {
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil(Pages[index], arguments: "All", (route) {
+      return route.isFirst || route.settings.name == homeRoute;
+    });
   }
 }
