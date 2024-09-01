@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/provider/splach_provider.dart';
-import 'package:untitled2/core/provider/user_provider.dart';
 
 import '../../../core/classes/shared_preferences/SharedPrefHelper.dart';
 import '../../../core/constants/myRoutes.dart';

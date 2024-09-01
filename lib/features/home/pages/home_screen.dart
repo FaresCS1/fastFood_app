@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/constants/myRoutes.dart';
-import 'package:untitled2/core/provider/user_provider.dart';
 import 'package:untitled2/core/shered_widget/bottomBar/bottomBar.dart';
 import 'package:untitled2/features/home/widgets/listviewWidget.dart';
 
