@@ -23,7 +23,7 @@ class MenuScreen extends StatelessWidget {
       floatingActionButton: FirebaseAuth.instance.currentUser != null
           ? InkWell(
               onTap: () {
-                WidgetsBinding.instance!.addPostFrameCallback((_) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
                   Navigator.of(context).pushNamed(cartRoute);
                 });
               },

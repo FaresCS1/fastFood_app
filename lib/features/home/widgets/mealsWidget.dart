@@ -4,7 +4,6 @@ import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';
 import '../../../core/models/foodMenu_info.dart';
-import '../../foods/pages/menu.dart';
 
 class MealsWidget extends StatelessWidget {
   const MealsWidget({super.key});

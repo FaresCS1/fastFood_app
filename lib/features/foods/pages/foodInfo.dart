@@ -1,11 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/constants/appDimension.dart';
 import 'package:untitled2/core/constants/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
-import 'package:untitled2/core/provider/user_provider.dart';
 import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
 import 'package:untitled2/core/shered_widget/buttons/fill_buttons/widget/fill_button_navgite.dart';
 
@@ -21,7 +19,6 @@ class FoodInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leading: backIcon(),
@@ -96,7 +93,7 @@ class FoodInfo extends StatelessWidget {
                                                 fontSize:
                                                     dimensionFontSize(18)),
                                           ),
-                                          Icon(Icons.access_time_outlined,
+                                          const Icon(Icons.access_time_outlined,
                                               color: AppColors.brownColor)
                                         ],
                                       ),
@@ -191,16 +188,20 @@ class FoodInfo extends StatelessWidget {
                                                   fontSize:
                                                       dimensionFontSize(18)),
                                             ),
-                                            IconButton(
-                                                onPressed: () {
-                                                  cartProvider
-                                                      .lessItem(foodInfo);
-                                                },
-                                                icon: Icon(
-                                                  color: AppColors.brownColor,
-                                                  Icons.do_not_disturb_on,
-                                                  size: dimensionWidth(0.08),
-                                                ))
+                                            foodInfo["numOfItem"] == 1
+                                                ? SizedBox(width: 10)
+                                                : IconButton(
+                                                    onPressed: () {
+                                                      cartProvider
+                                                          .lessItem(foodInfo);
+                                                    },
+                                                    icon: Icon(
+                                                      color:
+                                                          AppColors.brownColor,
+                                                      Icons.do_not_disturb_on,
+                                                      size:
+                                                          dimensionWidth(0.08),
+                                                    ))
                                           ],
                                         ),
                                       ),
@@ -249,7 +250,7 @@ class FoodInfo extends StatelessWidget {
                                                         route: loginRoute);
                                                   });
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.add_shopping_cart,
                                           color: AppColors.orangeColor,
                                         )),

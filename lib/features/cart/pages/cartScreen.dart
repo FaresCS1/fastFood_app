@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/constants/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
+import 'package:untitled2/core/provider/cart_provider.dart';
 import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
 
-import '../../../core/provider/cart_provider.dart';
 import '../../../core/shered_widget/buttons/fill_buttons/widget/fill_button_navgite.dart';
 import '../../../core/shered_widget/dialog/customized_dialog.dart';
 
@@ -16,13 +18,12 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    final cartItems = cartProvider.myCart;
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
           backgroundColor: AppColors.bgColor,
           actions: [
-            cartItems.isNotEmpty
+            cartProvider.myCart.isNotEmpty
                 ? IconButton(
                     icon: Icon(
                       Icons.delete_sweep_outlined,
@@ -57,7 +58,7 @@ class CartScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          cartItems.isEmpty
+          cartProvider.myCart.isEmpty
               ? Center(
                   child: Column(
                     children: [
@@ -98,9 +99,9 @@ class CartScreen extends StatelessWidget {
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: cartItems.length,
+                              itemCount: cartProvider.myCart.length,
                               itemBuilder: (context, index) {
-                                final item = cartItems[index];
+                                final item = cartProvider.myCart[index];
                                 return Container(
                                   height: dimensionHeight(0.20),
                                   padding: const EdgeInsets.all(10),
@@ -138,11 +139,14 @@ class CartScreen extends StatelessWidget {
                                                 children: [
                                                   IconButton(
                                                       onPressed: () {
-                                                        cartProvider.moreItem(
-                                                            cartProvider
-                                                                .myCart[index]);
-                                                        cartProvider
-                                                            .getTotalBill();
+                                                        WidgetsBinding.instance
+                                                            .addPostFrameCallback(
+                                                                (_) {
+                                                          cartProvider.moreItem(
+                                                              cartProvider
+                                                                      .myCart[
+                                                                  index]);
+                                                        });
                                                       },
                                                       icon: Icon(
                                                         color: AppColors
@@ -162,21 +166,31 @@ class CartScreen extends StatelessWidget {
                                                             dimensionFontSize(
                                                                 18)),
                                                   ),
-                                                  IconButton(
-                                                      onPressed: () {
-                                                        cartProvider.lessItem(
-                                                            cartProvider
-                                                                .myCart[index]);
-                                                        // cartProvider
-                                                        //     .TotalBill();
-                                                      },
-                                                      icon: Icon(
-                                                        color: AppColors
-                                                            .brownColor,
-                                                        Icons.do_not_disturb_on,
-                                                        size: dimensionWidth(
-                                                            0.10),
-                                                      ))
+                                                  item["numOfItem"] == 1
+                                                      ? SizedBox(width: 10)
+                                                      : IconButton(
+                                                          onPressed: () {
+                                                            WidgetsBinding
+                                                                .instance
+                                                                .addPostFrameCallback(
+                                                                    (_) {
+                                                              cartProvider.lessItem(
+                                                                  cartProvider
+                                                                          .myCart[
+                                                                      index]);
+                                                              // cartProvider
+                                                              //     .TotalBill();
+                                                            });
+                                                          },
+                                                          icon: Icon(
+                                                            color: AppColors
+                                                                .brownColor,
+                                                            Icons
+                                                                .do_not_disturb_on,
+                                                            size:
+                                                                dimensionWidth(
+                                                                    0.10),
+                                                          ))
                                                 ],
                                               ),
                                             ],
@@ -195,9 +209,13 @@ class CartScreen extends StatelessWidget {
                                                   fontWeight: FontWeight.bold)),
                                           IconButton(
                                               onPressed: () {
-                                                cartProvider.removeFromCart(
-                                                    cartProvider.myCart[index]);
-                                                // cartProvider.TotalBill();
+                                                WidgetsBinding.instance
+                                                    .addPostFrameCallback((_) {
+                                                  cartProvider.removeFromCart(
+                                                      cartProvider
+                                                          .myCart[index]);
+                                                  // cartProvider.TotalBill();
+                                                });
                                               },
                                               icon: Icon(
                                                 Icons.delete_outline_outlined,
@@ -250,14 +268,14 @@ class CartScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "Order Total :",
+                                            "Number of food Item :",
                                             style: TextStyle(
                                                 color: AppColors.midOrangeColor,
                                                 fontSize:
                                                     dimensionFontSize(18)),
                                           ),
                                           Text(
-                                            "${cartProvider.getTotalBill()} \u0024"
+                                            "${cartProvider.myCart.length} items"
                                                 .toString(),
                                             style: TextStyle(
                                                 fontSize:
@@ -279,42 +297,14 @@ class CartScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "Delivery fees :",
+                                            "Order Total :",
                                             style: TextStyle(
                                                 color: AppColors.midOrangeColor,
                                                 fontSize:
                                                     dimensionFontSize(18)),
                                           ),
                                           Text(
-                                            "12 \u0024",
-                                            style: TextStyle(
-                                                fontSize:
-                                                    dimensionFontSize(18)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Divider(
-                                      height: 5,
-                                      color: AppColors.whiteColor,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Total :",
-                                            style: TextStyle(
-                                                color: AppColors.midOrangeColor,
-                                                fontSize:
-                                                    dimensionFontSize(18)),
-                                          ),
-                                          Text(
-                                            "${cartProvider.getTotalBill() + 12} \u0024"
+                                            "${cartProvider.totalPill} \u0024"
                                                 .toString(),
                                             style: TextStyle(
                                                 fontSize:
@@ -328,7 +318,7 @@ class CartScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: dimensionHeight(0.06)),
-                            cartItems.isNotEmpty
+                            cartProvider.myCart.isNotEmpty
                                 ? fillButtonNavigate(
                                     "Go to checkout", checkOutRoute)
                                 : Container()

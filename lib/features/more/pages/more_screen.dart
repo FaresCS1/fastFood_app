@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 import 'package:untitled2/core/provider/bottomBar_provider.dart';
-import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
 import 'package:untitled2/core/shered_widget/logo/logo.dart';
 
 import '../../../core/constants/myRoutes.dart';
@@ -25,7 +24,7 @@ class MoreScreen extends StatelessWidget {
         floatingActionButton: FirebaseAuth.instance.currentUser != null
             ? InkWell(
                 onTap: () {
-                  WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
                     Navigator.of(context).pushNamed(cartRoute);
                   });
                 },

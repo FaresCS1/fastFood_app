@@ -25,14 +25,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FirebaseAuth.instance.currentUser != null
+      floatingActionButton: SharedPrefsHelper.getBool("login") == true
           ? InkWell(
               onTap: () {
-                WidgetsBinding.instance!.addPostFrameCallback((_) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
                   Navigator.of(context).pushNamed(cartRoute);
                 });
               },

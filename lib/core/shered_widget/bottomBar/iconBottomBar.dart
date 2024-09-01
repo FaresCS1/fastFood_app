@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/constants/appDimension.dart';
 import 'package:untitled2/core/provider/bottomBar_provider.dart';
 
 import '../../dimensions/myDimensions.dart';

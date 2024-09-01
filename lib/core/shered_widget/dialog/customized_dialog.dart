@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';

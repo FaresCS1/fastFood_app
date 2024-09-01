@@ -1,56 +1,72 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import '../colors/appColors.dart';
 import '../constants/myRoutes.dart';
 import '../shered_widget/dialog/customized_dialog.dart';
 
 class CartProvider extends ChangeNotifier {
   List<dynamic> myCart = [];
-  int totalBill = 0;
+  int _totalPill = 0;
+  int get totalPill => _totalPill;
+  int _totalItemPrice = 0;
+  dynamic _currentItemUpdate;
   bool credit = true;
 
   void addToCart(dynamic item) {
     myCart.add(item);
-    notifyListeners();
+    _totalItemPrice = item["price"] * item["numOfItem"];
+    _totalPill = _totalPill + _totalItemPrice;
+    Future.microtask(() => notifyListeners());
   }
 
   void moreItem(dynamic item) {
-    item["numOfItem"] = item["numOfItem"] + 1;
-    item["total price"] = item["total price"] + item["price"];
-    notifyListeners();
+    _currentItemUpdate = myCart.where((item_) => item_ == item);
+    if (_currentItemUpdate.isNotEmpty) {
+      _totalItemPrice = item["price"] * item["numOfItem"];
+      _totalPill = _totalPill - _totalItemPrice;
+      item["numOfItem"] = item["numOfItem"] + 1;
+      _totalItemPrice = item["price"] * item["numOfItem"];
+      item["total price"] = _totalItemPrice;
+      _totalPill = _totalPill + _totalItemPrice;
+    } else {
+      item["numOfItem"] = item["numOfItem"] + 1;
+      item["total price"] = item["total price"] + item["price"];
+    }
+    Future.microtask(() => notifyListeners());
   }
 
   void lessItem(dynamic item) {
-    if (item["numOfItem"] == 1) {
-      removeFromCart(item);
-      item["numOfItem"] = 1;
+    _currentItemUpdate = myCart.where((item_) => item_ == item);
+    if (_currentItemUpdate.isNotEmpty) {
+      if (item["numOfItem"] == 1) {
+        item["numOfItem"] = 1;
+        item["total price"] = item["price"];
+      } else {
+        _totalPill = _totalPill - item["price"] as int;
+        item["numOfItem"] = item["numOfItem"] - 1;
+        item["total price"] = item["total price"] - item["price"];
+      }
     } else {
-      item["numOfItem"] = item["numOfItem"] - 1;
-      item["total price"] = item["total price"] - item["price"];
+      if (item["numOfItem"] > 1) {
+        item["numOfItem"] = item["numOfItem"] - 1;
+        item["total price"] = item["total price"] - item["price"];
+      }
     }
-    notifyListeners();
+    Future.microtask(() => notifyListeners());
   }
 
   void removeFromCart(dynamic item) {
+    _totalItemPrice = item["price"] * item["numOfItem"];
+    _totalPill = _totalPill - _totalItemPrice;
+    item["numOfItem"] = 1;
+    item["total price"] = item["price"];
     myCart.remove(item);
-    getTotalBill();
-    notifyListeners();
-  }
-
-  int getTotalBill() {
-    resetBill();
-    for (int i = 0; i < myCart.length; i++) {
-      totalBill += (myCart[i]["total price"] as int);
-    }
-    notifyListeners();
-    return totalBill;
+    Future.microtask(() => notifyListeners());
   }
 
   void resetBill() {
-    notifyListeners();
-    totalBill = 0;
+    _totalPill = 0;
   }
 
   Future<void> sendOrder(BuildContext context) async {
@@ -72,12 +88,12 @@ class CartProvider extends ChangeNotifier {
 
   void emptyCart() {
     myCart.clear();
-    getTotalBill();
-    notifyListeners();
+    resetBill();
+    Future.microtask(() => notifyListeners());
   }
 
   void paymentWay() {
     credit = !credit;
-    notifyListeners();
+    Future.microtask(() => notifyListeners());
   }
 }

@@ -259,8 +259,7 @@ class CheckOutScreen extends StatelessWidget {
                                     fontSize: dimensionFontSize(18)),
                               ),
                               Text(
-                                "${cartProvider.getTotalBill()} \u0024"
-                                    .toString(),
+                                "${cartProvider.totalPill} \u0024".toString(),
                                 style:
                                     TextStyle(fontSize: dimensionFontSize(16)),
                               ),
@@ -310,7 +309,7 @@ class CheckOutScreen extends StatelessWidget {
                                     fontSize: dimensionFontSize(18)),
                               ),
                               Text(
-                                "${cartProvider.getTotalBill() + 12} \u0024"
+                                "${cartProvider.totalPill + 12} \u0024"
                                     .toString(),
                                 style:
                                     TextStyle(fontSize: dimensionFontSize(16)),
@@ -323,7 +322,7 @@ class CheckOutScreen extends StatelessWidget {
                   ),
                 ),
                 authButton(
-                  "Send Order ${cartProvider.totalBill}",
+                  "Send Order ${cartProvider.totalPill + 12}",
                   Icons.fastfood,
                   () => cartProvider.sendOrder(context),
                 ),

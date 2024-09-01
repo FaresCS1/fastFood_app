@@ -13,7 +13,6 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (_) => SplachProvider(),
@@ -30,12 +29,12 @@ class SplashPage extends StatelessWidget {
                     route = SharedPrefsHelper.getBool("login")!
                         ? homeRoute
                         : loginRoute;
-                    WidgetsBinding.instance!.addPostFrameCallback((_) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
                       Navigator.of(context)
                           .pushNamedAndRemoveUntil(route, (route) => false);
                     });
                   } else {
-                    WidgetsBinding.instance!.addPostFrameCallback((_) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           loginRoute, (route) => false);
                     });
