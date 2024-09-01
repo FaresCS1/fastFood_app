@@ -21,26 +21,29 @@ class ProfileScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: AppColors.bgColor,
           actions: [
-            Consumer<UserProvider>(
-              builder: (context, userProvider, child) {
-                return authButton(
-                    "Sign Out",
-                    Icons.exit_to_app,
-                    () => showDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (BuildContext context) {
-                          return ConfirmDialog(
-                              content: "are you sure to sign out ?",
-                              fun: userProvider.signOut,
-                              title: "SignOut",
-                              textButton: "SignOut",
-                              route: homeRoute,
-                              icon: Icons.exit_to_app,
-                              color: AppColors.redColor);
-                        }));
-              },
-            ),
+            ChangeNotifierProvider(
+              create: (_) => UserProvider(),
+              child: Consumer<UserProvider>(
+                builder: (context, userProvider, child) {
+                  return authButton(
+                      "Sign Out",
+                      Icons.exit_to_app,
+                      () => showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) {
+                            return ConfirmDialog(
+                                content: "are you sure to sign out ?",
+                                fun: userProvider.signOut,
+                                title: "SignOut",
+                                textButton: "SignOut",
+                                route: homeRoute,
+                                icon: Icons.exit_to_app,
+                                color: AppColors.redColor);
+                          }));
+                },
+              ),
+            )
           ],
           leading: backIcon(),
           title: Text(

@@ -6,21 +6,17 @@ import 'package:untitled2/core/constants/appDimension.dart';
 import 'package:untitled2/core/constants/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 import 'package:untitled2/core/provider/appState_provider.dart';
+import 'package:untitled2/core/provider/login_provider.dart';
 import 'package:untitled2/core/provider/user_provider.dart';
 import '../../../../core/shered_widget/buttons/border_boutton/widget/auth_button_.dart';
 import '../../../../core/shered_widget/buttons/text_button/textButtonWidget.dart';
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       body: Container(
         height: AppDimension.currentHeight,
@@ -65,53 +61,62 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontStyle: FontStyle.italic),
                     ),
                   ),
-                  Column(
-                    children: [
-                      textFieldWidget(
-                          Icons.email,
-                          "email",
-                          false,
-                          userProvider.emailController,
-                          userProvider.emailFormKey),
-                      SizedBox(height: dimensionHeight(0.015)),
-                      textFieldWidget(
-                          Icons.password,
-                          "password",
-                          false,
-                          userProvider.passwordController,
-                          userProvider.passwordFormKey),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  ChangeNotifierProvider(
+                    create: (_) => LoginProvider(),
+                    child: Builder(builder: (context) {
+                      final loginProvider = Provider.of<LoginProvider>(context);
+                      return Column(
                         children: [
-                          TextButtonWidget(
-                              "Sign up", AppColors.whiteColor, signUpRoute),
-                          TextButtonWidget(
-                              "as Gust", AppColors.whiteColor, homeRoute)
+                          textFieldWidget(
+                              Icons.email,
+                              "email",
+                              false,
+                              loginProvider.emailController,
+                              loginProvider.emailFormKey),
+                          SizedBox(height: dimensionHeight(0.015)),
+                          textFieldWidget(
+                              Icons.password,
+                              "password",
+                              false,
+                              loginProvider.passwordController,
+                              loginProvider.passwordFormKey),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButtonWidget(
+                                  "Sign up", AppColors.whiteColor, signUpRoute),
+                              TextButtonWidget(
+                                  "as Gust", AppColors.whiteColor, homeRoute)
+                            ],
+                          ),
+                          TextButtonWidget("forget password ..?",
+                              AppColors.whiteColor, restPasswordRoute),
+                          authButton("Login", Icons.login,
+                              () => loginProvider.login(context)),
+                          Consumer<AppStateProvider>(
+                            builder: (context, appState, child) {
+                              if (appState.isConnected == false) {
+                                Future.delayed(Duration.zero, () {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Center(
+                                        child: Text(
+                                      " No Internet Connection",
+                                      style: TextStyle(
+                                          color: AppColors.whiteColor),
+                                    )),
+                                    duration: Duration(seconds: 5),
+                                    backgroundColor: AppColors.redColor,
+                                  ));
+                                });
+                                return Container();
+                              }
+                              return Container();
+                            },
+                          ),
                         ],
-                      ),
-                      authButton("Login", Icons.login,
-                          () => userProvider.login(context)),
-                      Consumer<AppStateProvider>(
-                        builder: (context, appState, child) {
-                          if (appState.isConnected == false) {
-                            Future.delayed(Duration.zero, () {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Center(
-                                    child: Text(
-                                  " No Internet Connection",
-                                  style: TextStyle(color: AppColors.whiteColor),
-                                )),
-                                duration: Duration(seconds: 5),
-                                backgroundColor: AppColors.redColor,
-                              ));
-                            });
-                            return Container();
-                          }
-                          return Container();
-                        },
-                      ),
-                    ],
+                      );
+                    }),
                   )
                 ],
               ),

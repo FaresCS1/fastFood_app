@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:untitled2/core/constants/appDimension.dart';
 import 'package:untitled2/core/constants/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
+import 'package:untitled2/core/provider/signUp_provider.dart';
 import '../../../../core/colors/appColors.dart';
 import '../../../../core/provider/appState_provider.dart';
 import '../../../../core/provider/user_provider.dart';
@@ -11,15 +12,14 @@ import '../../../../core/shered_widget/buttons/text_button/textButtonWidget.dart
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
         body: Container(
       height: AppDimension.currentHeight,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
         image: AssetImage("assets/images/bg2.jpg"),
         fit: BoxFit.cover,
@@ -41,7 +41,7 @@ class SignupScreen extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 Container(
@@ -58,72 +58,85 @@ class SignupScreen extends StatelessWidget {
                         fontStyle: FontStyle.italic),
                   ),
                 ),
-                Column(
-                  children: [
-                    textFieldWidget(Icons.person, "full name", false,
-                        userProvider.nameController, userProvider.nameFormKey),
-                    SizedBox(height: dimensionHeight(0.015)),
-                    textFieldWidget(
-                        Icons.email,
-                        "email",
-                        false,
-                        userProvider.emailController,
-                        userProvider.emailFormKey),
-                    SizedBox(height: dimensionHeight(0.015)),
-                    textFieldWidget(
-                        Icons.password,
-                        "password",
-                        false,
-                        userProvider.passwordController,
-                        userProvider.passwordFormKey),
-                    SizedBox(height: dimensionHeight(0.015)),
-                    textFieldWidget(
-                        Icons.add_location_alt,
-                        "location",
-                        false,
-                        userProvider.locationController,
-                        userProvider.locationFormKey),
-                    SizedBox(height: dimensionHeight(0.015)),
-                    textFieldWidget(
-                        Icons.dialpad,
-                        "phone",
-                        false,
-                        userProvider.phoneController,
-                        userProvider.phoneFormKey),
-                    SizedBox(height: dimensionHeight(0.015)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButtonWidget(
-                            "Login", AppColors.whiteColor, loginRoute),
-                        TextButtonWidget(
-                            "as Gust", AppColors.whiteColor, homeRoute)
-                      ],
-                    ),
-                    authButton("Create Account", Icons.account_circle_outlined,
-                        () => userProvider.signUp(context)),
-                    Consumer<AppStateProvider>(
-                      builder: (context, appState, child) {
-                        if (appState.isConnected == false) {
-                          Future.delayed(Duration.zero, () {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Center(
-                                  child: Text(
-                                " No Internet Connection",
-                                style: TextStyle(color: AppColors.whiteColor),
-                              )),
-                              duration: Duration(seconds: 5),
-                              backgroundColor: AppColors.redColor,
-                            ));
-                          });
-                          return Container();
-                        }
-                        return Container();
-                      },
-                    ),
-                  ],
-                )
+                ChangeNotifierProvider(
+                    create: (_) => SignUpProvider(),
+                    child: Builder(builder: (context) {
+                      final signUpProvider =
+                          Provider.of<SignUpProvider>(context);
+                      return Column(
+                        children: [
+                          textFieldWidget(
+                              Icons.person,
+                              "full name",
+                              false,
+                              signUpProvider.nameController,
+                              signUpProvider.nameFormKey),
+                          SizedBox(height: dimensionHeight(0.015)),
+                          textFieldWidget(
+                              Icons.email,
+                              "email",
+                              false,
+                              signUpProvider.emailController,
+                              signUpProvider.emailFormKey),
+                          SizedBox(height: dimensionHeight(0.015)),
+                          textFieldWidget(
+                              Icons.password,
+                              "password",
+                              false,
+                              signUpProvider.passwordController,
+                              signUpProvider.passwordFormKey),
+                          SizedBox(height: dimensionHeight(0.015)),
+                          textFieldWidget(
+                              Icons.add_location_alt,
+                              "location",
+                              false,
+                              signUpProvider.locationController,
+                              signUpProvider.locationFormKey),
+                          SizedBox(height: dimensionHeight(0.015)),
+                          textFieldWidget(
+                              Icons.dialpad,
+                              "phone",
+                              false,
+                              signUpProvider.phoneController,
+                              signUpProvider.phoneFormKey),
+                          SizedBox(height: dimensionHeight(0.015)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButtonWidget(
+                                  "Login", AppColors.whiteColor, loginRoute),
+                              TextButtonWidget(
+                                  "as Gust", AppColors.whiteColor, homeRoute)
+                            ],
+                          ),
+                          authButton(
+                              "Create Account",
+                              Icons.account_circle_outlined,
+                              () => signUpProvider.signUp(context)),
+                          Consumer<AppStateProvider>(
+                            builder: (context, appState, child) {
+                              if (appState.isConnected == false) {
+                                Future.delayed(Duration.zero, () {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Center(
+                                        child: Text(
+                                      " No Internet Connection",
+                                      style: TextStyle(
+                                          color: AppColors.whiteColor),
+                                    )),
+                                    duration: Duration(seconds: 5),
+                                    backgroundColor: AppColors.redColor,
+                                  ));
+                                });
+                                return Container();
+                              }
+                              return Container();
+                            },
+                          ),
+                        ],
+                      );
+                    })),
               ],
             ),
           ),

@@ -9,11 +9,12 @@ import '../../../../core/provider/user_provider.dart';
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
 class RestPassword extends StatelessWidget {
+  GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
+
   RestPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
         body: Container(
       height: AppDimension.currentHeight,
@@ -78,7 +79,6 @@ class RestPassword extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: dimensionHeight(0.10),
                       child: Text(
                         "enter the email associted with your account and we will reset a new password to email",
                         style: TextStyle(
@@ -87,14 +87,24 @@ class RestPassword extends StatelessWidget {
                             fontStyle: FontStyle.italic),
                       ),
                     ),
-                    textFieldWidget(
-                        Icons.email,
-                        "email",
-                        false,
-                        userProvider.emailController,
-                        userProvider.emailFormKey),
-                    authButton("Reset Password", Icons.lock_reset,
-                        () => userProvider.resetPassword(context))
+                    ChangeNotifierProvider(
+                      create: (_) => UserProvider(),
+                      child: Builder(builder: (context) {
+                        final userProvider = Provider.of<UserProvider>(context);
+                        return Column(
+                          children: [
+                            textFieldWidget(
+                                Icons.email,
+                                "email",
+                                false,
+                                userProvider.emailController,
+                                userProvider.emailFormKey),
+                            authButton("Reset Password", Icons.lock_reset,
+                                () => userProvider.resetPassword(context))
+                          ],
+                        );
+                      }),
+                    )
                   ],
                 )
               ],
