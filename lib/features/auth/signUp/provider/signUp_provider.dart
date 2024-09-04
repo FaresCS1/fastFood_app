@@ -63,7 +63,7 @@ class SignUpProvider extends ChangeNotifier {
                   textButton: "Login with the new account",
                   route: loginRoute);
             });
-      } on FirebaseAuthException catch (e) {
+      } on FirebaseAuthException catch () {
         showDialog(
             context: context,
             barrierDismissible: false,

@@ -9,7 +9,7 @@ import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_wi
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
 class RestPassword extends StatelessWidget {
-  GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
   RestPassword({super.key});
 

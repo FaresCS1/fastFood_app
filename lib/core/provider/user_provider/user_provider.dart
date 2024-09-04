@@ -34,7 +34,7 @@ class UserProvider extends ChangeNotifier {
                   route: loginRoute,
                   color: AppColors.lightOrangeColor);
             });
-      } on FirebaseAuthException catch (e) {
+      } on FirebaseAuthException catch () {
         showDialog(
             context: context,
             barrierDismissible: false,
