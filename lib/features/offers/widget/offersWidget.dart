@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';
-import '../../../core/constants/myRoutes.dart';
-import '../../../core/models/foodMenu_info.dart';
+import '../../../core/routes/myRoutes.dart';
+import '../../foods/data/foodMenu_info.dart';
 
 class OffersWidget extends StatelessWidget {
   final bool dirHorizontal;
@@ -13,7 +13,7 @@ class OffersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: dirHorizontal ? dimensionHeight(0.25) : dimensionHeight(0.75),
+      height: dirHorizontal ? dimensionHeight(0.25) : dimensionHeight(0.85),
       child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: dirHorizontal ? Axis.horizontal : Axis.vertical,

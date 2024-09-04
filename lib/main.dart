@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
-import 'package:untitled2/core/provider/cart_provider.dart';
-import 'package:untitled2/core/provider/user_provider.dart';
-import 'core/classes/shared_preferences/SharedPrefHelper.dart';
-import 'core/constants/appDimension.dart';
+import 'package:untitled2/core/routes/myRoutes.dart';
+import 'package:untitled2/features/cart/provider/cart_provider.dart';
+import 'core/shared_preferences/SharedPrefHelper.dart';
+import 'core/dimensions/appDimension.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'core/provider/appState_provider.dart';
+import 'core/provider/app_state/appState_provider.dart';
 import 'core/routes/appRoute.dart';
 import 'features/splash/pages/splachPages.dart';
 

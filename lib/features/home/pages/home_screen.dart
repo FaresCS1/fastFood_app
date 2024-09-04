@@ -1,13 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
-import 'package:untitled2/core/shered_widget/bottomBar/bottomBar.dart';
+import 'package:untitled2/core/routes/myRoutes.dart';
+import 'package:untitled2/core/shered_widget/bottomBar/widget/bottomBar.dart';
 import 'package:untitled2/features/home/widgets/listviewWidget.dart';
 
-import '../../../core/classes/shared_preferences/SharedPrefHelper.dart';
+import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../core/dimensions/myDimensions.dart';
-import '../../../core/provider/bottomBar_provider.dart';
+import '../../../core/shered_widget/bottomBar/provider/bottomBar_provider.dart';
 import '../../../core/shered_widget/logo/logo.dart';
 import '../../../core/shered_widget/subtitleButton/SubtitlebuttonWidget.dart';
 import '../../offers/widget/offersWidget.dart';
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: SharedPrefsHelper.getBool("login") == true
+      floatingActionButton: FirebaseAuth.instance.currentUser != null
           ? InkWell(
               onTap: () {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           InkWell(
             onTap: () {
-              SharedPrefsHelper.getBool("login")!
+              FirebaseAuth.instance.currentUser != null
                   ? Navigator.of(context).pushNamed(profileRoute)
                   : Navigator.of(context)
                       .pushNamedAndRemoveUntil(loginRoute, (route) => false);
@@ -62,12 +63,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 Text(
-                  SharedPrefsHelper.getBool("login")!
+                  FirebaseAuth.instance.currentUser != null
                       ? SharedPrefsHelper.getString("location")!
                       : "Login now",
                   style: TextStyle(fontSize: dimensionFontSize(18)),
                 ),
-                SharedPrefsHelper.getBool("login")!
+                FirebaseAuth.instance.currentUser != null
                     ? Icon(
                         Icons.add_location_alt,
                         color: AppColors.orangeColor,
@@ -110,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, bottomBarProvider, _) {
                 return Builder(builder: (context) {
                   bottomBarProvider.Index = 0;
-                  return myBottombar(bottomBarProvider, context);
+                  return myBottomBar(bottomBarProvider, context);
                 });
               }))
         ],

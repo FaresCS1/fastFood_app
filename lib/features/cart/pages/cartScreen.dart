@@ -4,13 +4,13 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
-import 'package:untitled2/core/provider/cart_provider.dart';
-import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
+import 'package:untitled2/features/cart/provider/cart_provider.dart';
 
-import '../../../core/shered_widget/buttons/fill_buttons/widget/fill_button_navgite.dart';
-import '../../../core/shered_widget/dialog/customized_dialog.dart';
+import '../../../core/shered_widget/Icon_button/widgets/backIcon.dart';
+import '../../../core/shered_widget/buttons/fill_buttons/widget/fill_button_navigate_widget.dart';
+import '../../../core/shered_widget/dialog/confirm_dialog/confirm_dialog.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -59,8 +59,11 @@ class CartScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           cartProvider.myCart.isEmpty
-              ? Center(
+              ? Container(
+                  height: dimensionHeight(0.85),
+                  alignment: AlignmentDirectional.center,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.remove_shopping_cart,
@@ -119,7 +122,7 @@ class CartScreen extends StatelessWidget {
                                           Image.asset(
                                             item["img"],
                                             height: dimensionHeight(0.15),
-                                            width: dimensionWidth(0.20),
+                                            width: dimensionWidth(0.25),
                                           ),
                                           Column(
                                             mainAxisAlignment:
@@ -130,10 +133,11 @@ class CartScreen extends StatelessWidget {
                                               Text(
                                                 item["name"],
                                                 style: TextStyle(
+                                                    color:
+                                                        AppColors.orangeColor,
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize:
-                                                        dimensionFontSize(16),
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                        dimensionFontSize(18)),
                                               ),
                                               Row(
                                                 children: [
@@ -150,11 +154,11 @@ class CartScreen extends StatelessWidget {
                                                       },
                                                       icon: Icon(
                                                         color: AppColors
-                                                            .brownColor,
+                                                            .lightRedColor,
                                                         Icons
                                                             .add_circle_outlined,
                                                         size: dimensionWidth(
-                                                            0.10),
+                                                            0.07),
                                                       )),
                                                   Text(
                                                     item["numOfItem"]
@@ -184,12 +188,12 @@ class CartScreen extends StatelessWidget {
                                                           },
                                                           icon: Icon(
                                                             color: AppColors
-                                                                .brownColor,
+                                                                .lightRedColor,
                                                             Icons
                                                                 .do_not_disturb_on,
                                                             size:
                                                                 dimensionWidth(
-                                                                    0.10),
+                                                                    0.07),
                                                           ))
                                                 ],
                                               ),
@@ -202,11 +206,12 @@ class CartScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           Text(
-                                              "${item["total price"].toString()} \u0024",
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      dimensionFontSize(18),
-                                                  fontWeight: FontWeight.bold)),
+                                            "${item["total price"].toString()} \u0024",
+                                            style: TextStyle(
+                                                color: AppColors.blackColor,
+                                                fontSize:
+                                                    dimensionFontSize(18)),
+                                          ),
                                           IconButton(
                                               onPressed: () {
                                                 WidgetsBinding.instance

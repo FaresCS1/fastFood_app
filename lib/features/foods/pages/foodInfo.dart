@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/constants/appDimension.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/dimensions/appDimension.dart';
+import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
-import 'package:untitled2/core/shered_widget/Icons/widgets/backIcon.dart';
-import 'package:untitled2/core/shered_widget/buttons/fill_buttons/widget/fill_button_navgite.dart';
+import 'package:untitled2/core/shered_widget/Icon_button/widgets/backIcon.dart';
+import 'package:untitled2/core/shered_widget/buttons/fill_buttons/widget/fill_button_navigate_widget.dart';
 
-import '../../../core/classes/shared_preferences/SharedPrefHelper.dart';
-import '../../../core/provider/cart_provider.dart';
-import '../../../core/shered_widget/dialog/customized_dialog.dart';
+import '../../../core/shared_preferences/SharedPrefHelper.dart';
+import '../../cart/provider/cart_provider.dart';
+import '../../../core/shered_widget/dialog/error_dialog/error_dialog.dart';
 
 class FoodInfo extends StatelessWidget {
   final Map<dynamic, dynamic> foodInfo;
@@ -63,6 +63,7 @@ class FoodInfo extends StatelessWidget {
                                         foodInfo["name"],
                                         style: TextStyle(
                                             color: AppColors.orangeColor,
+                                            fontWeight: FontWeight.w500,
                                             fontSize: dimensionFontSize(24)),
                                       ),
                                       Text(
@@ -103,6 +104,7 @@ class FoodInfo extends StatelessWidget {
                                       Text(
                                         "5 min",
                                         style: TextStyle(
+                                            color: AppColors.blackColor,
                                             fontSize: dimensionFontSize(18)),
                                       )
                                     ],
@@ -126,6 +128,7 @@ class FoodInfo extends StatelessWidget {
                                       Text(
                                         "${foodInfo["price"].toString()}  Riyals",
                                         style: TextStyle(
+                                            color: AppColors.blackColor,
                                             fontSize: dimensionFontSize(18)),
                                       )
                                     ],
@@ -151,6 +154,7 @@ class FoodInfo extends StatelessWidget {
                                       Text(
                                         foodInfo["rate"].toString(),
                                         style: TextStyle(
+                                            color: AppColors.blackColor,
                                             fontSize: dimensionFontSize(18)),
                                       )
                                     ],
@@ -177,7 +181,8 @@ class FoodInfo extends StatelessWidget {
                                                       .moreItem(foodInfo);
                                                 },
                                                 icon: Icon(
-                                                  color: AppColors.brownColor,
+                                                  color:
+                                                      AppColors.lightRedColor,
                                                   Icons.add_circle_outlined,
                                                   size: dimensionWidth(0.08),
                                                 )),
@@ -196,8 +201,8 @@ class FoodInfo extends StatelessWidget {
                                                           .lessItem(foodInfo);
                                                     },
                                                     icon: Icon(
-                                                      color:
-                                                          AppColors.brownColor,
+                                                      color: AppColors
+                                                          .lightRedColor,
                                                       Icons.do_not_disturb_on,
                                                       size:
                                                           dimensionWidth(0.08),

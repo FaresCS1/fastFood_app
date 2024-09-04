@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
-import 'package:untitled2/core/provider/bottomBar_provider.dart';
+import 'package:untitled2/core/shered_widget/bottomBar/provider/bottomBar_provider.dart';
 
-import '../../../core/models/foodMenu_info.dart';
-import '../../../core/provider/food_provider.dart';
-import '../../../core/shered_widget/bottomBar/bottomBar.dart';
+import '../data/foodMenu_info.dart';
+import '../provider/food_provider.dart';
+import '../../../core/shered_widget/bottomBar/widget/bottomBar.dart';
 
 class MenuScreen extends StatelessWidget {
   late String type;
@@ -145,8 +145,8 @@ class MenuScreen extends StatelessWidget {
                                         child: Text(
                                           foodProvider.foodItem[index]["name"],
                                           style: const TextStyle(
-                                            color: AppColors.orangeColor,
-                                          ),
+                                              color: AppColors.orangeColor,
+                                              fontWeight: FontWeight.w500),
                                         ),
                                       ),
                                       Row(
@@ -154,12 +154,24 @@ class MenuScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           Text(
-                                              "${foodProvider.foodItem[index]["price"].toString()} Riyals"),
+                                            "${foodProvider.foodItem[index]["price"].toString()} Riyals",
+                                            style: TextStyle(
+                                                color: AppColors.blackColor,
+                                                fontSize:
+                                                    dimensionFontSize(16)),
+                                          ),
                                           Row(
                                             children: [
-                                              Text(foodProvider.foodItem[index]
-                                                      ["rate"]
-                                                  .toString()),
+                                              Text(
+                                                  foodProvider.foodItem[index]
+                                                          ["rate"]
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      color:
+                                                          AppColors.blackColor,
+                                                      fontSize:
+                                                          dimensionFontSize(
+                                                              16))),
                                               const Icon(
                                                 Icons.star,
                                                 color: AppColors.yellowColor,
@@ -185,7 +197,7 @@ class MenuScreen extends StatelessWidget {
                         builder: (context, bottomBarProvider, _) {
                       return Builder(builder: (context) {
                         bottomBarProvider.Index = 2;
-                        return myBottombar(bottomBarProvider, context);
+                        return myBottomBar(bottomBarProvider, context);
                       });
                     }))
               ],

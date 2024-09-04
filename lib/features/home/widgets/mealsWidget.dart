@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';
-import '../../../core/models/foodMenu_info.dart';
+import '../../foods/data/foodMenu_info.dart';
 
 class MealsWidget extends StatelessWidget {
   const MealsWidget({super.key});

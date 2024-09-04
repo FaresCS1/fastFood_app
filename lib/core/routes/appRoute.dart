@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled2/core/constants/myRoutes.dart';
+import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/features/cart/pages/cartScreen.dart';
-import 'package:untitled2/features/checkOut/checkOut_screen.dart';
-import 'package:untitled2/features/contact/contact_us.dart';
-import 'package:untitled2/features/entry/pages/login/login_screen.dart';
-import 'package:untitled2/features/entry/pages/login/rest_password.dart';
-import 'package:untitled2/features/entry/pages/signup/signUp.dart';
+import 'package:untitled2/features/checkOut/pages/checkOut_screen.dart';
+import 'package:untitled2/features/contact/pages/contact_us.dart';
 import 'package:untitled2/features/foods/pages/foodInfo.dart';
 import 'package:untitled2/features/home/pages/home_screen.dart';
 import 'package:untitled2/features/more/pages/more_screen.dart';
-import 'package:untitled2/features/offers/offers_screen.dart';
-import 'package:untitled2/features/profile/profile_screen.dart';
-import 'package:untitled2/features/terms_conditions/terms_screen.dart';
+import 'package:untitled2/features/offers/pages/offers_screen.dart';
+import 'package:untitled2/features/orders/pages/order_screen.dart';
+import 'package:untitled2/features/orders/pages/ordersDetails_screen.dart';
+import 'package:untitled2/features/profile/pages/profile_screen.dart';
+import 'package:untitled2/features/terms_conditions/pages/terms_screen.dart';
 
+import '../../features/auth/login/pages/login_screen.dart';
+import '../../features/auth/reset_password/pages/rest_password.dart';
+import '../../features/auth/signUp/pages/signUp.dart';
 import '../../features/foods/pages/menu.dart';
 import '../../features/splash/pages/splachPages.dart';
 
@@ -27,17 +29,26 @@ class AppRoute {
       case loginRoute:
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case signUpRoute:
-        return MaterialPageRoute(builder: (_) => SignupScreen());
+        return MaterialPageRoute(builder: (_) => const SignupScreen());
       case restPasswordRoute:
         return MaterialPageRoute(builder: (_) => RestPassword());
       case homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case ordersRoute:
+        return MaterialPageRoute(builder: (_) => const OrdersScreen());
       case offersRoute:
         return MaterialPageRoute(builder: (_) => const OffersScreen());
       case cartRoute:
         return MaterialPageRoute(builder: (_) => const CartScreen());
       case moreRoute:
-        return MaterialPageRoute(builder: (_) => const MoreScreen());
+        return MaterialPageRoute(builder: (_) => MoreScreen());
+      case orderDetailsRoute:
+        if (args is List) {
+          return MaterialPageRoute(
+              builder: (_) => OrderDetailsScreen(
+                    orderInfo: args,
+                  ));
+        }
       case menuRoute:
         if (args is String) {
           return MaterialPageRoute(

@@ -37,6 +37,7 @@ flutter:
      - assets/images/sandwich/
      - assets/images/mainCategory/
      - assets/images/offer/
+     - assets/images/others/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

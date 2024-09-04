@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
-import 'package:untitled2/core/provider/splach_provider.dart';
+import 'package:untitled2/features/splash/provider/splach_provider.dart';
 
-import '../../../core/classes/shared_preferences/SharedPrefHelper.dart';
-import '../../../core/constants/myRoutes.dart';
+import '../../../core/shared_preferences/SharedPrefHelper.dart';
+import '../../../core/routes/myRoutes.dart';
 import '../../../core/shered_widget/logo/logo.dart';
 
 class SplashPage extends StatelessWidget {

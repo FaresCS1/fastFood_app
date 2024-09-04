@@ -7,15 +7,20 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
-import 'package:untitled2/core/provider/bottomBar_provider.dart';
+import 'package:untitled2/core/shered_widget/bottomBar/provider/bottomBar_provider.dart';
 import 'package:untitled2/core/shered_widget/logo/logo.dart';
 
-import '../../../core/constants/myRoutes.dart';
-import '../../../core/models/moreInfo.dart';
-import '../../../core/shered_widget/bottomBar/bottomBar.dart';
+import '../../../core/routes/myRoutes.dart';
+import '../../../core/shered_widget/bottomBar/widget/bottomBar.dart';
 
 class MoreScreen extends StatelessWidget {
-  const MoreScreen({super.key});
+  final List _moreScreenInfo = [
+    {"name": "Menu", "route": menuRoute},
+    {"name": "My Profile", "route": profileRoute},
+    {"name": "Terms and Conditions", "route": termsConditionsRoute},
+    {"name": "Contact Us", "route": contactRoute},
+  ];
+  MoreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,7 @@ class MoreScreen extends StatelessWidget {
                 child: Container(
                   height: dimensionHeight(0.15),
                   width: dimensionWidth(0.15),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.orangeColor,
                   ),
@@ -77,10 +82,10 @@ class MoreScreen extends StatelessWidget {
                     child: ListView.separated(
                       separatorBuilder: (BuildContext context, int index) =>
                           const Divider(),
-                      itemCount: moreScreenInfo.length,
+                      itemCount: _moreScreenInfo.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                            title: Text(moreScreenInfo[index]["name"]),
+                            title: Text(_moreScreenInfo[index]["name"]),
                             titleTextStyle: TextStyle(
                                 fontSize: dimensionFontSize(20),
                                 color: AppColors.blackColor),
@@ -89,7 +94,7 @@ class MoreScreen extends StatelessWidget {
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) {
                                     Navigator.of(context).pushNamed(
-                                        moreScreenInfo[index]["route"],
+                                        _moreScreenInfo[index]["route"],
                                         arguments: "All");
                                   });
                                 },
@@ -109,7 +114,7 @@ class MoreScreen extends StatelessWidget {
                     builder: (context, bottomBarProvider, _) {
                   return Builder(builder: (context) {
                     bottomBarProvider.Index = 3;
-                    return myBottombar(bottomBarProvider, context);
+                    return myBottomBar(bottomBarProvider, context);
                   });
                 }))
           ],

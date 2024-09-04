@@ -45,7 +45,7 @@ class CustomTextField extends StatelessWidget {
       }
       return "Please enter a valid email address!";
     } else if (type == "full name") {
-      if (RegExp(r'^[a-zA-Z]+$').hasMatch(controller.text)) {
+      if (RegExp(r'^[a-zA-Z\s]+$').hasMatch(controller.text)) {
         return null;
       }
       return "name must contain only letters.";
@@ -75,6 +75,7 @@ class CustomTextField extends StatelessWidget {
             controller: controller,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) => validatorValue(hintText, controller),
+            maxLength: hintText == "phone" ? 10 : null,
             keyboardType:
                 hintText == "phone" ? TextInputType.number : TextInputType.text,
             decoration: InputDecoration(
@@ -87,7 +88,7 @@ class CustomTextField extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.only(right: 5),
                       child: Image.asset(
-                        "assets/images/saudi_flag.png",
+                        "assets/images/others/saudi_flag.png",
                         height: 10,
                       ),
                     )
@@ -102,6 +103,7 @@ class CustomTextField extends StatelessWidget {
               ),
               fillColor: AppColors.beigeColor,
               filled: true,
+              hintStyle: const TextStyle(color: AppColors.grayColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
               ),

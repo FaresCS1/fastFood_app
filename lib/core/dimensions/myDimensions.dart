@@ -1,4 +1,4 @@
-import 'package:untitled2/core/constants/appDimension.dart';
+import 'package:untitled2/core/dimensions/appDimension.dart';
 
 double dimensionWidth(double value) {
   return AppDimension.currentWidth * value;
