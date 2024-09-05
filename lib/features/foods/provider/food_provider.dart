@@ -26,7 +26,7 @@ class FoodProvider extends ChangeNotifier {
   void scrollToIndex(int index) {
     scrollController.animateTo(
       index * 110.0,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }

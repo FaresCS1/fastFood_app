@@ -29,7 +29,7 @@ class ErrorDialog extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
               color: color == null ? AppColors.redColor : color,
               borderRadius: BorderRadius.circular(15),
@@ -80,7 +80,7 @@ class ErrorDialog extends StatelessWidget {
                   },
                   child: Text(
                     textButton == null ? "Close" : textButton!,
-                    style: TextStyle(color: AppColors.whiteColor),
+                    style: const TextStyle(color: AppColors.whiteColor),
                   ),
                 ),
               ],

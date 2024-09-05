@@ -9,6 +9,7 @@ import 'package:untitled2/features/home/widgets/listviewWidget.dart';
 import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../core/dimensions/myDimensions.dart';
 import '../../../core/shered_widget/bottomBar/provider/bottomBar_provider.dart';
+import '../../../core/shered_widget/bottomBar/widget/float_cartIcon.dart';
 import '../../../core/shered_widget/logo/logo.dart';
 import '../../../core/shered_widget/subtitleButton/SubtitlebuttonWidget.dart';
 import '../../offers/widget/offersWidget.dart';
@@ -28,26 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.bgColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FirebaseAuth.instance.currentUser != null
-          ? InkWell(
-              onTap: () {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.of(context).pushNamed(cartRoute);
-                });
-              },
-              child: Container(
-                height: dimensionHeight(0.15),
-                width: dimensionWidth(0.15),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.orangeColor,
-                ),
-                child: Icon(
-                  Icons.add_shopping_cart,
-                  color: AppColors.whiteColor,
-                  size: dimensionWidth(0.10),
-                ),
-              ),
-            )
+          ? const FloatCartIcon()
           : null,
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
@@ -90,15 +72,15 @@ class _HomeScreenState extends State<HomeScreen> {
           SingleChildScrollView(
             child: Container(
               height: dimensionHeight(0.75),
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               color: AppColors.bgColor,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     const OffersWidget(dirHorizontal: true),
-                    subtitleWidget("Categories", menuRoute),
+                    subtitleNavigateWidget("Categories", menuRoute),
                     const CategoryWidget(),
-                    subtitleWidget("Meals", menuRoute),
+                    subtitleNavigateWidget("Meals", menuRoute),
                     const MealsWidget(),
                   ],
                 ),

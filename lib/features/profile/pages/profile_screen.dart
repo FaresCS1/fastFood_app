@@ -9,7 +9,7 @@ import 'package:untitled2/core/shered_widget/Icon_button/widgets/backIcon.dart';
 import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
 import '../../../core/shered_widget/dialog/confirm_dialog/confirm_dialog.dart';
-import '../widgets/card_info.dart';
+import '../../../core/shered_widget/global/card_info.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

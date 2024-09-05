@@ -17,7 +17,7 @@ class CategoryWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: 4,
             itemBuilder: (context, index) {
-              final int startIndex = 2;
+              const int startIndex = 2;
               final int actualIndex = index + startIndex;
               return InkWell(
                 onTap: () {

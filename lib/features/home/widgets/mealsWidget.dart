@@ -14,7 +14,7 @@ class MealsWidget extends StatelessWidget {
         child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: mealsInfo.length,
             itemBuilder: (context, index) {
               return InkWell(
@@ -34,7 +34,7 @@ class MealsWidget extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
+                          SizedBox(
                             height: dimensionHeight(0.15),
                             width: dimensionWidth(0.60),
                             child: Image.asset(

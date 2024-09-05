@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/shared_preferences/SharedPrefHelper.dart';
@@ -16,7 +17,7 @@ class LoginProvider extends ChangeNotifier {
   GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
   String? currentUserEmail = FirebaseAuth.instance.currentUser?.email;
-  List<QueryDocumentSnapshot> _currentUserData = [];
+  final List<QueryDocumentSnapshot> _currentUserData = [];
 
   getData() async {
     try {
@@ -36,7 +37,9 @@ class LoginProvider extends ChangeNotifier {
       SharedPrefsHelper.setBool("login", true);
       notifyListeners();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 

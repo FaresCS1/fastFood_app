@@ -84,16 +84,8 @@ class CartProvider extends ChangeNotifier {
     myCart.add({"totalPrice": _totalPill});
     List<dynamic> copyCart = deepCopy(myCart);
     myOrder.add(copyCart);
-    print("MY Orders");
-    print(myOrder);
-    print("MY Cart");
-    print(myCart);
     resetBill();
     emptyCart();
-    print("After MY Orders");
-    print(myOrder);
-    print("After MY Cart");
-    print(myCart);
     await showDialog(
         context: context,
         barrierDismissible: false,

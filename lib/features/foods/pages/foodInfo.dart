@@ -9,12 +9,13 @@ import 'package:untitled2/core/shered_widget/buttons/fill_buttons/widget/fill_bu
 
 import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../cart/provider/cart_provider.dart';
-import '../../../core/shered_widget/dialog/error_dialog/error_dialog.dart';
+import '../widgets/foodInfo/meal_action.dart';
+import '../widgets/foodInfo/meal_description.dart';
 
-class FoodInfo extends StatelessWidget {
+class FoodInfoScreen extends StatelessWidget {
   final Map<dynamic, dynamic> foodInfo;
 
-  const FoodInfo({super.key, required this.foodInfo});
+  const FoodInfoScreen({super.key, required this.foodInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -54,214 +55,11 @@ class FoodInfo extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        foodInfo["name"],
-                                        style: TextStyle(
-                                            color: AppColors.orangeColor,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: dimensionFontSize(24)),
-                                      ),
-                                      Text(
-                                        foodInfo["type"],
-                                        style: TextStyle(
-                                            color: AppColors.grayColor,
-                                            fontSize: dimensionFontSize(20)),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: dimensionHeight(0.04),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Time",
-                                            style: TextStyle(
-                                                color: AppColors.brownColor,
-                                                fontSize:
-                                                    dimensionFontSize(18)),
-                                          ),
-                                          const Icon(Icons.access_time_outlined,
-                                              color: AppColors.brownColor)
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: dimensionHeight(0.02),
-                                      ),
-                                      Text(
-                                        "5 min",
-                                        style: TextStyle(
-                                            color: AppColors.blackColor,
-                                            fontSize: dimensionFontSize(18)),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text("Price",
-                                              style: TextStyle(
-                                                  color: AppColors.brownColor,
-                                                  fontSize:
-                                                      dimensionFontSize(18))),
-                                          Icon(Icons.monetization_on,
-                                              color: AppColors.brownColor)
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: dimensionHeight(0.02),
-                                      ),
-                                      Text(
-                                        "${foodInfo["price"].toString()}  Riyals",
-                                        style: TextStyle(
-                                            color: AppColors.blackColor,
-                                            fontSize: dimensionFontSize(18)),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text("Rate",
-                                              style: TextStyle(
-                                                  color: AppColors.brownColor,
-                                                  fontSize:
-                                                      dimensionFontSize(18))),
-                                          Icon(
-                                            Icons.star,
-                                            color: AppColors.yellowColor,
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: dimensionHeight(0.02),
-                                      ),
-                                      Text(
-                                        foodInfo["rate"].toString(),
-                                        style: TextStyle(
-                                            color: AppColors.blackColor,
-                                            fontSize: dimensionFontSize(18)),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: dimensionHeight(0.04),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            IconButton(
-                                                onPressed: () {
-                                                  cartProvider
-                                                      .moreItem(foodInfo);
-                                                },
-                                                icon: Icon(
-                                                  color:
-                                                      AppColors.lightRedColor,
-                                                  Icons.add_circle_outlined,
-                                                  size: dimensionWidth(0.08),
-                                                )),
-                                            Text(
-                                              foodInfo["numOfItem"].toString(),
-                                              style: TextStyle(
-                                                  color: AppColors.brownColor,
-                                                  fontSize:
-                                                      dimensionFontSize(18)),
-                                            ),
-                                            foodInfo["numOfItem"] == 1
-                                                ? SizedBox(width: 10)
-                                                : IconButton(
-                                                    onPressed: () {
-                                                      cartProvider
-                                                          .lessItem(foodInfo);
-                                                    },
-                                                    icon: Icon(
-                                                      color: AppColors
-                                                          .lightRedColor,
-                                                      Icons.do_not_disturb_on,
-                                                      size:
-                                                          dimensionWidth(0.08),
-                                                    ))
-                                          ],
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          "Total: ${foodInfo["total price"]} Riyals",
-                                          style: TextStyle(
-                                              color: AppColors.brownColor,
-                                              fontSize: dimensionFontSize(18)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Container(
-                                    height: dimensionHeight(0.08),
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        color: cartProvider.myCart
-                                                .contains(foodInfo)
-                                            ? AppColors.beigeColor
-                                            : Colors.transparent,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: InkWell(
-                                        onTap: () {
-                                          SharedPrefsHelper.getBool("login")!
-                                              ? cartProvider.myCart
-                                                      .contains(foodInfo)
-                                                  ? null
-                                                  : cartProvider
-                                                      .addToCart(foodInfo)
-                                              : showDialog(
-                                                  context: context,
-                                                  barrierDismissible: true,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return const ErrorDialog(
-                                                        content:
-                                                            "you cant add to cart while you gust",
-                                                        title:
-                                                            "filed add to cart",
-                                                        textButton:
-                                                            "Login Know",
-                                                        color: AppColors
-                                                            .lightOrangeColor,
-                                                        route: loginRoute);
-                                                  });
-                                        },
-                                        child: const Icon(
-                                          Icons.add_shopping_cart,
-                                          color: AppColors.orangeColor,
-                                        )),
-                                  ),
-                                ],
-                              ),
+                              mealDescription(foodInfo),
+                              const SizedBox(height: 20),
+                              MealActionWidget(
+                                  cartProvider: cartProvider,
+                                  foodInfo: foodInfo),
                               cartProvider.myCart.contains(foodInfo)
                                   ? const Text(
                                       "Already added to cart",

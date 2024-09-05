@@ -12,7 +12,7 @@ import '../../../../core/shered_widget/buttons/text_button/textButtonWidget.dart
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Container(
               height: AppDimension.currentHeight,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

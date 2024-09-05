@@ -4,8 +4,8 @@ import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';
 import '../../../core/shered_widget/Icon_button/widgets/backIcon.dart';
+import '../../../core/shered_widget/global/card_info.dart';
 import '../../../core/shered_widget/logo/logo.dart';
-import '../../profile/widgets/card_info.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});

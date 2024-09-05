@@ -1,9 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
@@ -12,6 +8,7 @@ import 'package:untitled2/core/shered_widget/logo/logo.dart';
 
 import '../../../core/routes/myRoutes.dart';
 import '../../../core/shered_widget/bottomBar/widget/bottomBar.dart';
+import '../../../core/shered_widget/bottomBar/widget/float_cartIcon.dart';
 
 class MoreScreen extends StatelessWidget {
   final List _moreScreenInfo = [
@@ -27,26 +24,7 @@ class MoreScreen extends StatelessWidget {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FirebaseAuth.instance.currentUser != null
-            ? InkWell(
-                onTap: () {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.of(context).pushNamed(cartRoute);
-                  });
-                },
-                child: Container(
-                  height: dimensionHeight(0.15),
-                  width: dimensionWidth(0.15),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.orangeColor,
-                  ),
-                  child: Icon(
-                    Icons.add_shopping_cart,
-                    color: AppColors.whiteColor,
-                    size: dimensionWidth(0.10),
-                  ),
-                ),
-              )
+            ? const FloatCartIcon()
             : null,
         appBar: AppBar(
           backgroundColor: AppColors.bgColor,

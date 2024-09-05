@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: splashRoute,
       onGenerateRoute: AppRoute.generateRoute,
-      home: SplashPage(),
+      home: SplashScreen(),
     );
   }
 }

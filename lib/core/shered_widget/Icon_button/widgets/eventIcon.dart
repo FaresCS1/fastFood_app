@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../colors/appColors.dart';
@@ -14,7 +13,7 @@ class BackEvent extends StatelessWidget {
           Navigator.pop(context);
         });
       },
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_back_ios,
         color: AppColors.midOrangeColor,
         size: 30,

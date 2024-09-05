@@ -7,8 +7,8 @@ import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../core/routes/myRoutes.dart';
 import '../../../core/shered_widget/logo/logo.dart';
 
-class SplashPage extends StatelessWidget {
-  const SplashPage({super.key});
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

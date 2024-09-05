@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/features/cart/pages/cartScreen.dart';
@@ -25,13 +24,13 @@ class AppRoute {
 
     switch (settings.name) {
       case splashRoute:
-        return MaterialPageRoute(builder: (_) => const SplashPage());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case loginRoute:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case signUpRoute:
         return MaterialPageRoute(builder: (_) => const SignupScreen());
       case restPasswordRoute:
-        return MaterialPageRoute(builder: (_) => RestPassword());
+        return MaterialPageRoute(builder: (_) => RestPasswordScreen());
       case homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case ordersRoute:
@@ -59,7 +58,7 @@ class AppRoute {
       case foodInfoRoute:
         if (args is Map) {
           return MaterialPageRoute(
-            builder: (_) => FoodInfo(
+            builder: (_) => FoodInfoScreen(
               foodInfo: args,
             ),
           );
@@ -80,9 +79,9 @@ class AppRoute {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Error Route'),
+          title: const Text('Error Route'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('ERROR Route'),
         ),
       );

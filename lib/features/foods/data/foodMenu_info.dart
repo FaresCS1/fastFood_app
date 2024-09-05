@@ -155,10 +155,10 @@ List<dynamic> allFoodInfo = [
 List foodsCategory = [
   {"type": "All"},
   {"type": "Meals"},
-  {"type": "Burger", "img": "assets/images/mainCategory/Burger.png"},
-  {"type": "Sandwich", "img": "assets/images/mainCategory/Sandwich.png"},
-  {"type": "Fries", "img": "assets/images/mainCategory/Fries.png"},
-  {"type": "Drinks", "img": "assets/images/mainCategory/Drink.png"},
+  {"type": "Burger", "img": "assets/images/burger/cheesburger.png"},
+  {"type": "Sandwich", "img": "assets/images/sandwich/shawarma.png"},
+  {"type": "Fries", "img": "assets/images/fries/fries.png"},
+  {"type": "Drinks", "img": "assets/images/drinks/drink.png"},
 ];
 
 List offersList = [

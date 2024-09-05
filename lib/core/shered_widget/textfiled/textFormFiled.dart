@@ -98,7 +98,7 @@ class CustomTextField extends StatelessWidget {
                   fontWeight: FontWeight.bold),
               hintText: hintText,
               prefixText: hintText == "phone" ? "+966 " : null,
-              prefixStyle: TextStyle(
+              prefixStyle: const TextStyle(
                 color: AppColors.orangeColor,
               ),
               fillColor: AppColors.beigeColor,

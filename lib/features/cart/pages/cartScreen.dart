@@ -6,11 +6,15 @@ import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
+import 'package:untitled2/core/shered_widget/global/order_summary_widget.dart';
 import 'package:untitled2/features/cart/provider/cart_provider.dart';
 
 import '../../../core/shered_widget/Icon_button/widgets/backIcon.dart';
 import '../../../core/shered_widget/buttons/fill_buttons/widget/fill_button_navigate_widget.dart';
 import '../../../core/shered_widget/dialog/confirm_dialog/confirm_dialog.dart';
+import '../../../core/shered_widget/global/empty_widget.dart';
+import '../../../core/shered_widget/global/sub_title.dart';
+import '../widgets/cartItemsWidget.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -59,26 +63,7 @@ class CartScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           cartProvider.myCart.isEmpty
-              ? Container(
-                  height: dimensionHeight(0.85),
-                  alignment: AlignmentDirectional.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.remove_shopping_cart,
-                        color: AppColors.orangeColor,
-                        size: dimensionWidth(0.20),
-                      ),
-                      Text(
-                        "Empty Shopping Cart",
-                        style: TextStyle(
-                            color: AppColors.lightOrangeColor,
-                            fontSize: dimensionFontSize(25)),
-                      )
-                    ],
-                  ),
-                )
+              ? emptyWidget("Empty Shopping Cart", Icons.shopping_cart_outlined)
               : Container(
                   height: dimensionHeight(0.85),
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -88,240 +73,26 @@ class CartScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "My Order",
-                              style: TextStyle(
-                                color: AppColors.blackColor,
-                                fontSize: dimensionFontSize(22),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                            subTitle("My Order"),
                             SizedBox(
                               height: dimensionHeight(0.03),
                             ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: cartProvider.myCart.length,
-                              itemBuilder: (context, index) {
-                                final item = cartProvider.myCart[index];
-                                return Container(
-                                  height: dimensionHeight(0.20),
-                                  padding: const EdgeInsets.all(10),
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.whiteColor,
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Image.asset(
-                                            item["img"],
-                                            height: dimensionHeight(0.15),
-                                            width: dimensionWidth(0.25),
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                item["name"],
-                                                style: TextStyle(
-                                                    color:
-                                                        AppColors.orangeColor,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        dimensionFontSize(18)),
-                                              ),
-                                              Row(
-                                                children: [
-                                                  IconButton(
-                                                      onPressed: () {
-                                                        WidgetsBinding.instance
-                                                            .addPostFrameCallback(
-                                                                (_) {
-                                                          cartProvider.moreItem(
-                                                              cartProvider
-                                                                      .myCart[
-                                                                  index]);
-                                                        });
-                                                      },
-                                                      icon: Icon(
-                                                        color: AppColors
-                                                            .lightRedColor,
-                                                        Icons
-                                                            .add_circle_outlined,
-                                                        size: dimensionWidth(
-                                                            0.07),
-                                                      )),
-                                                  Text(
-                                                    item["numOfItem"]
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color: AppColors
-                                                            .brownColor,
-                                                        fontSize:
-                                                            dimensionFontSize(
-                                                                18)),
-                                                  ),
-                                                  item["numOfItem"] == 1
-                                                      ? SizedBox(width: 10)
-                                                      : IconButton(
-                                                          onPressed: () {
-                                                            WidgetsBinding
-                                                                .instance
-                                                                .addPostFrameCallback(
-                                                                    (_) {
-                                                              cartProvider.lessItem(
-                                                                  cartProvider
-                                                                          .myCart[
-                                                                      index]);
-                                                              // cartProvider
-                                                              //     .TotalBill();
-                                                            });
-                                                          },
-                                                          icon: Icon(
-                                                            color: AppColors
-                                                                .lightRedColor,
-                                                            Icons
-                                                                .do_not_disturb_on,
-                                                            size:
-                                                                dimensionWidth(
-                                                                    0.07),
-                                                          ))
-                                                ],
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                            "${item["total price"].toString()} \u0024",
-                                            style: TextStyle(
-                                                color: AppColors.blackColor,
-                                                fontSize:
-                                                    dimensionFontSize(18)),
-                                          ),
-                                          IconButton(
-                                              onPressed: () {
-                                                WidgetsBinding.instance
-                                                    .addPostFrameCallback((_) {
-                                                  cartProvider.removeFromCart(
-                                                      cartProvider
-                                                          .myCart[index]);
-                                                  // cartProvider.TotalBill();
-                                                });
-                                              },
-                                              icon: Icon(
-                                                Icons.delete_outline_outlined,
-                                                color: AppColors.redColor,
-                                                size: dimensionWidth(0.10),
-                                              ))
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
+                            CartItemsWidget(cartProvider: cartProvider),
                           ],
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Order Summary",
-                              style: TextStyle(
-                                color: AppColors.blackColor,
-                                fontSize: dimensionFontSize(22),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                            subTitle("Order Summary"),
                             SizedBox(
                               height: dimensionHeight(0.03),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                  color: AppColors.whiteColor,
-                                  width: 2,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Number of food Item :",
-                                            style: TextStyle(
-                                                color: AppColors.midOrangeColor,
-                                                fontSize:
-                                                    dimensionFontSize(18)),
-                                          ),
-                                          Text(
-                                            "${cartProvider.myCart.length} items"
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize:
-                                                    dimensionFontSize(16)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Divider(
-                                      height: 5,
-                                      color: AppColors.whiteColor,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Order Total :",
-                                            style: TextStyle(
-                                                color: AppColors.midOrangeColor,
-                                                fontSize:
-                                                    dimensionFontSize(18)),
-                                          ),
-                                          Text(
-                                            "${cartProvider.totalPill} \u0024"
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize:
-                                                    dimensionFontSize(16)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            OrderSummaryWidget(
+                                orderInfo: cartProvider.myCart,
+                                withNumberOfItems: true,
+                                orderInProgress: true,
+                                withDeliveryFees: false,
+                                cartTotalPrice: cartProvider.totalPill),
                             SizedBox(height: dimensionHeight(0.06)),
                             cartProvider.myCart.isNotEmpty
                                 ? fillButtonNavigate(

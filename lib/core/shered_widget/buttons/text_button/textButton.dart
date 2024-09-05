@@ -22,7 +22,8 @@ class myTextButton extends StatelessWidget {
                   .pushNamedAndRemoveUntil(route, (route) => false)
               : Navigator.of(context).pushNamed(route);
         },
-        onHover: (value) => TextStyle(backgroundColor: AppColors.grayColor),
+        onHover: (value) =>
+            const TextStyle(backgroundColor: AppColors.grayColor),
         child: Text(
           text,
           style: TextStyle(

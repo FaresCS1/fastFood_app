@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
@@ -24,8 +23,8 @@ class OffersScreen extends StatelessWidget {
               fontWeight: FontWeight.bold),
         ),
         body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: OffersWidget(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const OffersWidget(
               dirHorizontal: false,
             )));
   }

@@ -8,10 +8,10 @@ import '../../../../core/provider/user_provider/user_provider.dart';
 import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
-class RestPassword extends StatelessWidget {
+class RestPasswordScreen extends StatelessWidget {
   final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
-  RestPassword({super.key});
+  RestPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class RestPassword extends StatelessWidget {
         child: SingleChildScrollView(
           child: Container(
             height: AppDimension.currentHeight,
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -100,7 +100,7 @@ class RestPassword extends StatelessWidget {
                                 userProvider.emailController,
                                 userProvider.emailFormKey),
                             authButtonWidget("Reset Password", Icons.lock_reset,
-                                () => userProvider.resetPassword(context))
+                                () => userProvider.resetPassword(context)),
                           ],
                         );
                       }),
