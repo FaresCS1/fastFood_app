@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../../core/colors/appColors.dart';
 import '../../../../core/routes/myRoutes.dart';
-import '../../../../core/shered_widget/dialog/error_dialog/error_dialog.dart';
-import '../../../../core/shered_widget/dialog/success_dialog/success_dialog.dart';
+import '../../../../core/shered_widget/dialog/build_dialog.dart';
 
 class LoginProvider extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
@@ -43,34 +42,28 @@ class LoginProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> login(BuildContext context) async {
+  Future<void> login() async {
     if (emailFormKey.currentState!.validate() &&
         passwordFormKey.currentState!.validate()) {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
         getData();
-        showDialog(
-            context: context,
+        BuildDialog.showSuccessDialog(
+            color: AppColors.greenColor,
             barrierDismissible: false,
-            builder: (BuildContext context) {
-              return const SuccessDialog(
-                  color: AppColors.greenColor,
-                  icon: Icons.verified_user,
-                  content: "success Login Welcome To Fast Food App",
-                  title: "Success Login",
-                  textButton: "Explore The App",
-                  route: homeRoute);
-            });
+            content: "success Login Welcome To Fast Food App",
+            title: "Success Login",
+            textButton: "Explore FastFood App",
+            icon: Icons.verified_user,
+            route: homeRoute);
       } on FirebaseAuthException catch (e) {
-        showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return const ErrorDialog(
-                  content: "filed login enter correct values",
-                  title: "Filed Login");
-            });
+        BuildDialog.showErrorDialog(
+          barrierDismissible: true,
+          textButton:"Close",
+          content: "filed login enter correct values",
+          title: "Filed Login",
+        );
       }
     }
   }

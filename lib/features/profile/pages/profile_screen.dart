@@ -5,6 +5,7 @@ import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 import 'package:untitled2/core/provider/user_provider/user_provider.dart';
 import 'package:untitled2/core/shered_widget/Icon_button/widgets/backIcon.dart';
+import 'package:untitled2/core/shered_widget/dialog/build_dialog.dart';
 
 import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
@@ -16,6 +17,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildDialog.init(context);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -28,19 +30,14 @@ class ProfileScreen extends StatelessWidget {
                   return authButtonWidget(
                       "Sign Out",
                       Icons.exit_to_app,
-                      () => showDialog(
-                          context: context,
+                      () => BuildDialog.showConfirmDialog(
+                          icon: Icons.exit_to_app,
+                          title: "SignOut",
+                          color: AppColors.redColor,
                           barrierDismissible: true,
-                          builder: (BuildContext context) {
-                            return ConfirmDialog(
-                                content: "are you sure to sign out ?",
-                                fun: userProvider.signOut,
-                                title: "SignOut",
-                                textButton: "SignOut",
-                                route: homeRoute,
-                                icon: Icons.exit_to_app,
-                                color: AppColors.redColor);
-                          }));
+                          content: "are you sure to sign out ?",
+                          route: homeRoute,
+                          fun: userProvider.signOut));
                 },
               ),
             )

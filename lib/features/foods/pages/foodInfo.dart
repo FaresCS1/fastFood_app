@@ -6,6 +6,7 @@ import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 import 'package:untitled2/core/shered_widget/Icon_button/widgets/backIcon.dart';
 import 'package:untitled2/core/shered_widget/buttons/fill_buttons/widget/fill_button_navigate_widget.dart';
+import 'package:untitled2/core/shered_widget/dialog/build_dialog.dart';
 
 import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../cart/provider/cart_provider.dart';
@@ -19,6 +20,7 @@ class FoodInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildDialog.init(context);
     final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(

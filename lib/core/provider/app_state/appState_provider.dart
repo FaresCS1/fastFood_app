@@ -12,7 +12,7 @@ class AppStateProvider extends ChangeNotifier {
     updateConnectivity(connectivityResult);
   }
 
-  void updateConnectivity(List<ConnectivityResult> results) async {
+  Future<void> updateConnectivity(List<ConnectivityResult> results) async {
     isConnected = results.any((result) => result != ConnectivityResult.none);
     notifyListeners();
   }

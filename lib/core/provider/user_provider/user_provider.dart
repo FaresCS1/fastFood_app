@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import '../../shared_preferences/SharedPrefHelper.dart';
 import '../../colors/appColors.dart';
 import '../../routes/myRoutes.dart';
-import '../../shered_widget/dialog/error_dialog/error_dialog.dart';
-import '../../shered_widget/dialog/success_dialog/success_dialog.dart';
+import '../../shered_widget/dialog/build_dialog.dart';
 
 class UserProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
@@ -17,32 +16,26 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> resetPassword(BuildContext context) async {
+  Future<void> resetPassword() async {
     if (emailFormKey.currentState!.validate()) {
       try {
         FirebaseAuth.instance
             .sendPasswordResetEmail(email: emailController.text);
-        showDialog(
-            context: context,
+        BuildDialog.showSuccessDialog(
+            color: AppColors.lightOrangeColor,
             barrierDismissible: false,
-            builder: (BuildContext context) {
-              return const SuccessDialog(
-                  content: "Please Check your email to rest password",
-                  title: "Check Email ",
-                  textButton: '',
-                  icon: Icons.mark_email_read,
-                  route: loginRoute,
-                  color: AppColors.lightOrangeColor);
-            });
+            content: "Please Check your email to rest password",
+            title: "Check Email",
+            textButton: "Login",
+            icon: Icons.email,
+            route: loginRoute);
       } on FirebaseAuthException catch (e) {
-        showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return const ErrorDialog(
-                  content: "filed login enter correct values",
-                  title: "Filed Login");
-            });
+        BuildDialog.showErrorDialog(
+          barrierDismissible: true,
+          textButton:"Close",
+          content: "filed reset enter correct values",
+          title: "Filed Reset",
+        );
       }
     }
   }

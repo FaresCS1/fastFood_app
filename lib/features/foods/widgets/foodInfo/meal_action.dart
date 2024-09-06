@@ -5,6 +5,7 @@ import '../../../../core/colors/appColors.dart';
 import '../../../../core/dimensions/myDimensions.dart';
 import '../../../../core/routes/myRoutes.dart';
 import '../../../../core/shared_preferences/SharedPrefHelper.dart';
+import '../../../../core/shered_widget/dialog/build_dialog.dart';
 import '../../../../core/shered_widget/dialog/error_dialog/error_dialog.dart';
 
 class MealActionWidget extends StatelessWidget {
@@ -67,18 +68,14 @@ class MealActionWidget extends StatelessWidget {
                     ? cartProvider.myCart.contains(foodInfo)
                         ? null
                         : cartProvider.addToCart(foodInfo)
-                    : showDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (BuildContext context) {
-                          return const ErrorDialog(
-                              content: "you cant add to cart while you gust",
-                              title: "filed add to cart",
-                              textButton: "Login now",
-                              color: AppColors.lightOrangeColor,
-                              route: loginRoute);
-                        });
-              },
+                    :BuildDialog.showErrorDialog(
+                    icon: Icons.delete_sweep_outlined,
+                    title: "filed add to cart",
+                    textButton:"Login now",
+                    color: AppColors.lightOrangeColor,
+                    barrierDismissible: true,
+                    content: "you cant add to cart while you gust",
+                    route: loginRoute);},
               child: const Icon(
                 Icons.add_shopping_cart,
                 color: AppColors.orangeColor,

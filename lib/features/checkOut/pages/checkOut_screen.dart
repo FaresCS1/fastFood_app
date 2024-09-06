@@ -60,12 +60,12 @@ class CheckOutScreen extends StatelessWidget {
                 authButtonWidget(
                   "Send Order ${cartProvider.totalPill + 12}",
                   Icons.fastfood,
-                  () => cartProvider.sendOrder(context),
+                  () => cartProvider.sendOrder(),
                 ),
                 Consumer<AppStateProvider>(
                   builder: (context, appState, child) {
                     if (appState.isConnected == false) {
-                      Future.delayed(Duration.zero, () {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           content: Center(
@@ -77,7 +77,6 @@ class CheckOutScreen extends StatelessWidget {
                           backgroundColor: AppColors.redColor,
                         ));
                       });
-                      return Container();
                     }
                     return Container();
                   },

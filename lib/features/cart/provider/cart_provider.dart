@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/colors/appColors.dart';
 import '../../../core/routes/myRoutes.dart';
-import '../../../core/shered_widget/dialog/success_dialog/success_dialog.dart';
+import '../../../core/shered_widget/dialog/build_dialog.dart';
 
 class CartProvider extends ChangeNotifier {
   List<dynamic> myCart = [];
@@ -80,24 +80,20 @@ class CartProvider extends ChangeNotifier {
     return copy;
   }
 
-  Future<void> sendOrder(BuildContext context) async {
+  Future<void> sendOrder() async {
     myCart.add({"totalPrice": _totalPill});
     List<dynamic> copyCart = deepCopy(myCart);
     myOrder.add(copyCart);
     resetBill();
     emptyCart();
-    await showDialog(
-        context: context,
+    BuildDialog.showSuccessDialog(
+        icon: Icons.fastfood,
+        title: "Successfully Send Order",
+        textButton:"Home",
+        color: AppColors.orangeColor,
         barrierDismissible: false,
-        builder: (BuildContext context) {
-          return const SuccessDialog(
-              color: AppColors.orangeColor,
-              icon: Icons.fastfood,
-              content: "success order Welcome To Fast Food App",
-              title: "Successfully Send Order",
-              textButton: "Home",
-              route: homeRoute);
-        });
+        content: "success order Welcome To Fast Food App",
+        route: homeRoute);
   }
 
   void emptyCart() {

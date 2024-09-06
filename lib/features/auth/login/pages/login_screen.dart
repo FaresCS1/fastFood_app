@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/appDimension.dart';
 import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 import 'package:untitled2/core/provider/app_state/appState_provider.dart';
+import 'package:untitled2/core/shered_widget/dialog/build_dialog.dart';
 import 'package:untitled2/features/auth/login/provider/login_provider.dart';
 import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
 import '../../../../core/shered_widget/buttons/text_button/textButtonWidget.dart';
@@ -16,6 +16,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildDialog.init(context);
     return Scaffold(
       body: Container(
         height: AppDimension.currentHeight,
@@ -91,11 +92,12 @@ class LoginScreen extends StatelessWidget {
                           TextButtonWidget("forget password ..?",
                               AppColors.whiteColor, restPasswordRoute),
                           authButtonWidget("Login", Icons.login,
-                              () => loginProvider.login(context)),
+                              () => loginProvider.login()),
                           Consumer<AppStateProvider>(
                             builder: (context, appState, child) {
                               if (appState.isConnected == false) {
-                                Future.delayed(Duration.zero, () {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
                                     content: Center(
@@ -108,7 +110,6 @@ class LoginScreen extends StatelessWidget {
                                     backgroundColor: AppColors.redColor,
                                   ));
                                 });
-                                return Container();
                               }
                               return Container();
                             },

@@ -8,6 +8,7 @@ import '../../../../core/colors/appColors.dart';
 import '../../../../core/provider/app_state/appState_provider.dart';
 import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
 import '../../../../core/shered_widget/buttons/text_button/textButtonWidget.dart';
+import '../../../../core/shered_widget/dialog/build_dialog.dart';
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -15,6 +16,7 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildDialog.init(context);
     return Scaffold(
         body: Container(
       height: AppDimension.currentHeight,
@@ -134,11 +136,12 @@ class SignupScreen extends StatelessWidget {
                           authButtonWidget(
                               "Create Account",
                               Icons.account_circle_outlined,
-                              () => signUpProvider.signUp(context)),
+                              () => signUpProvider.signUp()),
                           Consumer<AppStateProvider>(
                             builder: (context, appState, child) {
                               if (appState.isConnected == false) {
-                                Future.delayed(Duration.zero, () {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
                                     content: Center(
@@ -151,7 +154,6 @@ class SignupScreen extends StatelessWidget {
                                     backgroundColor: AppColors.redColor,
                                   ));
                                 });
-                                return Container();
                               }
                               return Container();
                             },

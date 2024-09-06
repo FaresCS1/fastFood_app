@@ -11,6 +11,7 @@ import 'package:untitled2/features/cart/provider/cart_provider.dart';
 
 import '../../../core/shered_widget/Icon_button/widgets/backIcon.dart';
 import '../../../core/shered_widget/buttons/fill_buttons/widget/fill_button_navigate_widget.dart';
+import '../../../core/shered_widget/dialog/build_dialog.dart';
 import '../../../core/shered_widget/dialog/confirm_dialog/confirm_dialog.dart';
 import '../../../core/shered_widget/global/empty_widget.dart';
 import '../../../core/shered_widget/global/sub_title.dart';
@@ -21,6 +22,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildDialog.init(context);
     final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       backgroundColor: AppColors.bgColor,
@@ -34,21 +36,14 @@ class CartScreen extends StatelessWidget {
                       color: AppColors.lightRedColor,
                       size: dimensionWidth(0.10),
                     ),
-                    onPressed: () => showDialog(
-                        context: context,
+                    onPressed: () => BuildDialog.showConfirmDialog(
+                        icon: Icons.delete_sweep_outlined,
+                        title: "Empty Cart",
+                        color: AppColors.orangeColor,
                         barrierDismissible: true,
-                        builder: (BuildContext context) {
-                          return ConfirmDialog(
-                              content:
-                                  "are you sure to delete all tour items card",
-                              fun: cartProvider.emptyCart,
-                              title: "Empty Cart",
-                              textButton: "Empty",
-                              route: homeRoute,
-                              icon: Icons.delete_sweep_outlined,
-                              color: AppColors.orangeColor);
-                        }),
-                  )
+                        content: "are you sure to delete all tour items card",
+                        route: homeRoute,
+                        fun: cartProvider.emptyCart))
                 : Container()
           ],
           title: const Text("Cart"),

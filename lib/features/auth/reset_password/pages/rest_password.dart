@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/appDimension.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
+import '../../../../core/provider/app_state/appState_provider.dart';
 import '../../../../core/provider/user_provider/user_provider.dart';
 import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
+import '../../../../core/shered_widget/dialog/build_dialog.dart';
 import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
 
 class RestPasswordScreen extends StatelessWidget {
@@ -15,6 +17,7 @@ class RestPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildDialog.init(context);
     return Scaffold(
         body: Container(
       height: AppDimension.currentHeight,
@@ -100,11 +103,30 @@ class RestPasswordScreen extends StatelessWidget {
                                 userProvider.emailController,
                                 userProvider.emailFormKey),
                             authButtonWidget("Reset Password", Icons.lock_reset,
-                                () => userProvider.resetPassword(context)),
+                                () => userProvider.resetPassword()),
                           ],
                         );
                       }),
-                    )
+                    ),
+                    Consumer<AppStateProvider>(
+                      builder: (context, appState, child) {
+                        if (appState.isConnected == false) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Center(
+                                  child: Text(
+                                " No Internet Connection",
+                                style: TextStyle(color: AppColors.whiteColor),
+                              )),
+                              duration: Duration(seconds: 5),
+                              backgroundColor: AppColors.redColor,
+                            ));
+                          });
+                        }
+                        return Container();
+                      },
+                    ),
                   ],
                 )
               ],
