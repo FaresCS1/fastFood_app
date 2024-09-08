@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
-import 'package:untitled2/core/shered_widget/Icon_button/widgets/backIcon.dart';
-import 'package:untitled2/features/offers/widget/offersWidget.dart';
+import 'package:untitled2/core/sheared_widget/Icon_button/widgets/backIcon.dart';
+import 'package:untitled2/features/offers/widget/offers_widget.dart';
 
 class OffersScreen extends StatelessWidget {
   const OffersScreen({super.key});

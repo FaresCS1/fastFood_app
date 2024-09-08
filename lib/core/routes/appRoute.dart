@@ -3,20 +3,20 @@ import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/features/cart/pages/cartScreen.dart';
 import 'package:untitled2/features/checkOut/pages/checkOut_screen.dart';
 import 'package:untitled2/features/contact/pages/contact_us.dart';
-import 'package:untitled2/features/foods/pages/foodInfo.dart';
+import 'package:untitled2/features/foods/pages/foodInfo_screen.dart';
 import 'package:untitled2/features/home/pages/home_screen.dart';
 import 'package:untitled2/features/more/pages/more_screen.dart';
 import 'package:untitled2/features/offers/pages/offers_screen.dart';
 import 'package:untitled2/features/orders/pages/order_screen.dart';
-import 'package:untitled2/features/orders/pages/ordersDetails_screen.dart';
+import 'package:untitled2/features/orders/pages/orders_details_screen.dart';
 import 'package:untitled2/features/profile/pages/profile_screen.dart';
 import 'package:untitled2/features/terms_conditions/pages/terms_screen.dart';
 
 import '../../features/auth/login/pages/login_screen.dart';
 import '../../features/auth/reset_password/pages/rest_password.dart';
 import '../../features/auth/signUp/pages/signUp.dart';
-import '../../features/foods/pages/menu.dart';
-import '../../features/splash/pages/splachPages.dart';
+import '../../features/foods/pages/menu_screen.dart';
+import '../../features/splash/pages/splash_screen.dart';
 
 class AppRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {

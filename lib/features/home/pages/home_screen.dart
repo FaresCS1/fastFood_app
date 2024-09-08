@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/routes/myRoutes.dart';
-import 'package:untitled2/core/shered_widget/bottomBar/widget/bottomBar.dart';
-import 'package:untitled2/features/home/widgets/listviewWidget.dart';
+import 'package:untitled2/core/sheared_widget/bottomBar/widget/bottomBar.dart';
+import 'package:untitled2/features/home/widgets/category_widget.dart';
 
 import '../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../core/dimensions/myDimensions.dart';
-import '../../../core/shered_widget/bottomBar/provider/bottomBar_provider.dart';
-import '../../../core/shered_widget/bottomBar/widget/float_cartIcon.dart';
-import '../../../core/shered_widget/logo/logo.dart';
-import '../../../core/shered_widget/subtitleButton/SubtitlebuttonWidget.dart';
-import '../../offers/widget/offersWidget.dart';
-import '../widgets/mealsWidget.dart';
+import '../../../core/sheared_widget/bottomBar/provider/bottomBar_provider.dart';
+import '../../../core/sheared_widget/bottomBar/widget/float_cartIcon.dart';
+import '../../../core/sheared_widget/logo/logo.dart';
+import '../../../core/sheared_widget/subtitleButton/SubtitlebuttonWidget.dart';
+import '../../offers/widget/offers_widget.dart';
+import '../widgets/meals_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -69,11 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SingleChildScrollView(
-            child: Container(
-              height: dimensionHeight(0.75),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              color: AppColors.bgColor,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
               child: SingleChildScrollView(
                 child: Column(
                   children: [

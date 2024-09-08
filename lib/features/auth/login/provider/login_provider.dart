@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/shared_preferences/SharedPrefHelper.dart';
 import '../../../../core/colors/appColors.dart';
 import '../../../../core/routes/myRoutes.dart';
-import '../../../../core/shered_widget/dialog/build_dialog.dart';
+import '../../../../core/sheared_widget/dialog/build_dialog.dart';
 
 class LoginProvider extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
@@ -15,14 +15,13 @@ class LoginProvider extends ChangeNotifier {
   GlobalKey<FormState> passwordFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
-  String? currentUserEmail = FirebaseAuth.instance.currentUser?.email;
   final List<QueryDocumentSnapshot> _currentUserData = [];
 
   getData() async {
     try {
       QuerySnapshot userData = await FirebaseFirestore.instance
           .collection("Users")
-          .where("email", isEqualTo: currentUserEmail)
+          .where("email", isEqualTo: emailController.text)
           .get();
       _currentUserData.addAll(userData.docs);
       SharedPrefsHelper.setString("email", _currentUserData.first['email']);
@@ -60,7 +59,7 @@ class LoginProvider extends ChangeNotifier {
       } on FirebaseAuthException catch (e) {
         BuildDialog.showErrorDialog(
           barrierDismissible: true,
-          textButton:"Close",
+          textButton: "Close",
           content: "filed login enter correct values",
           title: "Filed Login",
         );

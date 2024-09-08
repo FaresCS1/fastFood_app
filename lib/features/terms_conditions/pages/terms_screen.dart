@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 
 import '../../../core/colors/appColors.dart';
-import '../../../core/shered_widget/Icon_button/widgets/backIcon.dart';
-import '../../../core/shered_widget/logo/logo.dart';
+import '../../../core/sheared_widget/Icon_button/widgets/backIcon.dart';
+import '../../../core/sheared_widget/logo/logo.dart';
 import '../widgets/bulletTextWidget.dart';
 
 class TermsConditionScreen extends StatelessWidget {

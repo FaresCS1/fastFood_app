@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/colors/appColors.dart';
@@ -40,11 +39,11 @@ Widget mealDescription(Map<dynamic, dynamic> foodInfo) {
                   Text(
                     "Time",
                     style: TextStyle(
-                        color: AppColors.brownColor,
+                        color: AppColors.orangeColor,
                         fontSize: dimensionFontSize(18)),
                   ),
                   const Icon(Icons.access_time_outlined,
-                      color: AppColors.brownColor)
+                      color: AppColors.orangeColor)
                 ],
               ),
               SizedBox(
@@ -64,9 +63,10 @@ Widget mealDescription(Map<dynamic, dynamic> foodInfo) {
                 children: [
                   Text("Price",
                       style: TextStyle(
-                          color: AppColors.brownColor,
+                          color: AppColors.orangeColor,
                           fontSize: dimensionFontSize(18))),
-                  const Icon(Icons.monetization_on, color: AppColors.brownColor)
+                  const Icon(Icons.monetization_on,
+                      color: AppColors.orangeColor)
                 ],
               ),
               SizedBox(
@@ -86,11 +86,11 @@ Widget mealDescription(Map<dynamic, dynamic> foodInfo) {
                 children: [
                   Text("Rate",
                       style: TextStyle(
-                          color: AppColors.brownColor,
+                          color: AppColors.orangeColor,
                           fontSize: dimensionFontSize(18))),
                   const Icon(
                     Icons.star,
-                    color: AppColors.yellowColor,
+                    color: AppColors.orangeColor,
                   )
                 ],
               ),

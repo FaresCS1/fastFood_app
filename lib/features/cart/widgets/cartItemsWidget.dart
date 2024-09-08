@@ -3,6 +3,7 @@ import 'package:untitled2/features/cart/provider/cart_provider.dart';
 
 import '../../../core/colors/appColors.dart';
 import '../../../core/dimensions/myDimensions.dart';
+import 'package:untitled2/features/cart/cart_items.dart';
 
 class CartItemsWidget extends StatelessWidget {
   final CartProvider cartProvider;
@@ -13,9 +14,9 @@ class CartItemsWidget extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: cartProvider.myCart.length,
+      itemCount: myCart.length,
       itemBuilder: (context, index) {
-        final item = cartProvider.myCart[index];
+        final item = myCart[index];
         return Container(
           height: dimensionHeight(0.20),
           padding: const EdgeInsets.all(5),
@@ -53,8 +54,7 @@ class CartItemsWidget extends StatelessWidget {
                                 onPressed: () {
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) {
-                                    cartProvider
-                                        .moreItem(cartProvider.myCart[index]);
+                                    cartProvider.moreItem(myCart[index]);
                                   });
                                 },
                                 icon: Icon(
@@ -65,7 +65,7 @@ class CartItemsWidget extends StatelessWidget {
                             Text(
                               item["numOfItem"].toString(),
                               style: TextStyle(
-                                  color: AppColors.brownColor,
+                                  color: AppColors.midOrangeColor,
                                   fontSize: dimensionFontSize(16)),
                             ),
                             item["numOfItem"] == 1
@@ -74,8 +74,7 @@ class CartItemsWidget extends StatelessWidget {
                                     onPressed: () {
                                       WidgetsBinding.instance
                                           .addPostFrameCallback((_) {
-                                        cartProvider.lessItem(
-                                            cartProvider.myCart[index]);
+                                        cartProvider.lessItem(myCart[index]);
                                         // cartProvider
                                         //     .TotalBill();
                                       });
@@ -96,9 +95,16 @@ class CartItemsWidget extends StatelessWidget {
                         IconButton(
                             onPressed: () {
                               WidgetsBinding.instance.addPostFrameCallback((_) {
-                                cartProvider
-                                    .removeFromCart(cartProvider.myCart[index]);
-                                // cartProvider.TotalBill();
+                                cartProvider.removeFromCart(myCart[index]);
+                                // myCart.isNotEmpty
+                                //     ? Future.delayed(const Duration(seconds: 3),
+                                //         () {
+                                //         Navigator.pushNamedAndRemoveUntil(
+                                //             context,
+                                //             homeRoute,
+                                //             (route) => false);
+                                //       })
+                                //     : Container();
                               });
                             },
                             icon: Icon(

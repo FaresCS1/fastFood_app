@@ -5,11 +5,11 @@ import 'package:untitled2/core/dimensions/appDimension.dart';
 import 'package:untitled2/core/routes/myRoutes.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 import 'package:untitled2/core/provider/app_state/appState_provider.dart';
-import 'package:untitled2/core/shered_widget/dialog/build_dialog.dart';
+import 'package:untitled2/core/sheared_widget/dialog/build_dialog.dart';
 import 'package:untitled2/features/auth/login/provider/login_provider.dart';
-import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
-import '../../../../core/shered_widget/buttons/text_button/textButtonWidget.dart';
-import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
+import '../../../../core/sheared_widget/buttons/auth_button/widget/auth_button_widget.dart';
+import '../../../../core/sheared_widget/buttons/text_button/textButtonWidget.dart';
+import '../../../../core/sheared_widget/textField/textFieldWidget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -66,6 +66,7 @@ class LoginScreen extends StatelessWidget {
                     child: Builder(builder: (context) {
                       final loginProvider = Provider.of<LoginProvider>(context);
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           textFieldWidget(
                               Icons.email,
@@ -73,7 +74,6 @@ class LoginScreen extends StatelessWidget {
                               false,
                               loginProvider.emailController,
                               loginProvider.emailFormKey),
-                          SizedBox(height: dimensionHeight(0.015)),
                           textFieldWidget(
                               Icons.password,
                               "password",

@@ -4,7 +4,7 @@ import '../../../core/colors/appColors.dart';
 import '../../../core/dimensions/myDimensions.dart';
 import '../../../core/routes/myRoutes.dart';
 import '../../../core/shared_preferences/SharedPrefHelper.dart';
-import '../../../core/shered_widget/logo/logo.dart';
+import '../../../core/sheared_widget/logo/logo.dart';
 
 class OrderWidget extends StatelessWidget {
   final int numOfItem;

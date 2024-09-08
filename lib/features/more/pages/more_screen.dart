@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
-import 'package:untitled2/core/shered_widget/bottomBar/provider/bottomBar_provider.dart';
-import 'package:untitled2/core/shered_widget/logo/logo.dart';
+import 'package:untitled2/core/sheared_widget/bottomBar/provider/bottomBar_provider.dart';
+import 'package:untitled2/core/sheared_widget/logo/logo.dart';
 
 import '../../../core/routes/myRoutes.dart';
-import '../../../core/shered_widget/bottomBar/widget/bottomBar.dart';
-import '../../../core/shered_widget/bottomBar/widget/float_cartIcon.dart';
+import '../../../core/sheared_widget/bottomBar/widget/bottomBar.dart';
+import '../../../core/sheared_widget/bottomBar/widget/float_cartIcon.dart';
 
 class MoreScreen extends StatelessWidget {
   final List _moreScreenInfo = [

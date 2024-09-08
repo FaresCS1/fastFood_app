@@ -6,10 +6,10 @@ import 'package:untitled2/core/dimensions/myDimensions.dart';
 import 'package:untitled2/features/auth/signUp/provider/signUp_provider.dart';
 import '../../../../core/colors/appColors.dart';
 import '../../../../core/provider/app_state/appState_provider.dart';
-import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
-import '../../../../core/shered_widget/buttons/text_button/textButtonWidget.dart';
-import '../../../../core/shered_widget/dialog/build_dialog.dart';
-import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
+import '../../../../core/sheared_widget/buttons/auth_button/widget/auth_button_widget.dart';
+import '../../../../core/sheared_widget/buttons/text_button/textButtonWidget.dart';
+import '../../../../core/sheared_widget/dialog/build_dialog.dart';
+import '../../../../core/sheared_widget/textField/textFieldWidget.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -65,6 +65,7 @@ class SignupScreen extends StatelessWidget {
                       final signUpProvider =
                           Provider.of<SignUpProvider>(context);
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           textFieldWidget(
                               Icons.person,
@@ -72,21 +73,18 @@ class SignupScreen extends StatelessWidget {
                               false,
                               signUpProvider.nameController,
                               signUpProvider.nameFormKey),
-                          SizedBox(height: dimensionHeight(0.015)),
                           textFieldWidget(
                               Icons.email,
                               "email",
                               false,
                               signUpProvider.emailController,
                               signUpProvider.emailFormKey),
-                          SizedBox(height: dimensionHeight(0.015)),
                           textFieldWidget(
                               Icons.password,
                               "password",
                               false,
                               signUpProvider.passwordController,
                               signUpProvider.passwordFormKey),
-                          SizedBox(height: dimensionHeight(0.015)),
                           DropdownMenu<String>(
                             width: double.infinity,
                             enableSearch: true,
@@ -116,14 +114,12 @@ class SignupScreen extends StatelessWidget {
                                   value: value, label: value);
                             }).toList(),
                           ),
-                          SizedBox(height: dimensionHeight(0.015)),
                           textFieldWidget(
                               Icons.dialpad,
                               "phone",
                               false,
                               signUpProvider.phoneController,
                               signUpProvider.phoneFormKey),
-                          SizedBox(height: dimensionHeight(0.015)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [

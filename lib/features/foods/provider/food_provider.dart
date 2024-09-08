@@ -12,7 +12,7 @@ class FoodProvider extends ChangeNotifier {
   void selectedType(String selectedType) {
     type = selectedType;
     foodType();
-    notifyListeners();
+    Future.microtask(() => notifyListeners());
   }
 
   void typeToIndex(String selectedType) {

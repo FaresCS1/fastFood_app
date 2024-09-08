@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/features/cart/cart_items.dart';
+import 'package:untitled2/features/orders/list_of_orders.dart';
 import '../../../core/colors/appColors.dart';
 import '../../../core/routes/myRoutes.dart';
-import '../../../core/shered_widget/dialog/build_dialog.dart';
+import '../../../core/sheared_widget/dialog/build_dialog.dart';
 
 class CartProvider extends ChangeNotifier {
-  List<dynamic> myCart = [];
-  List<dynamic> myOrder = [];
-  int _totalPill = 0;
-  int get totalPill => _totalPill;
   int _totalItemPrice = 0;
   dynamic _currentItemUpdate;
   bool credit = true;
@@ -15,7 +13,7 @@ class CartProvider extends ChangeNotifier {
   void addToCart(dynamic item) {
     myCart.add(item);
     _totalItemPrice = item["price"] * item["numOfItem"];
-    _totalPill = _totalPill + _totalItemPrice;
+    totalPill = totalPill + _totalItemPrice;
     Future.microtask(() => notifyListeners());
   }
 
@@ -23,11 +21,11 @@ class CartProvider extends ChangeNotifier {
     _currentItemUpdate = myCart.where((item_) => item_ == item);
     if (_currentItemUpdate.isNotEmpty) {
       _totalItemPrice = item["price"] * item["numOfItem"];
-      _totalPill = _totalPill - _totalItemPrice;
+      totalPill = totalPill - _totalItemPrice;
       item["numOfItem"] = item["numOfItem"] + 1;
       _totalItemPrice = item["price"] * item["numOfItem"];
       item["total price"] = _totalItemPrice;
-      _totalPill = _totalPill + _totalItemPrice;
+      totalPill = totalPill + _totalItemPrice;
     } else {
       item["numOfItem"] = item["numOfItem"] + 1;
       item["total price"] = item["total price"] + item["price"];
@@ -42,7 +40,7 @@ class CartProvider extends ChangeNotifier {
         item["numOfItem"] = 1;
         item["total price"] = item["price"];
       } else {
-        _totalPill = _totalPill - item["price"] as int;
+        totalPill = totalPill - item["price"] as int;
         item["numOfItem"] = item["numOfItem"] - 1;
         item["total price"] = item["total price"] - item["price"];
       }
@@ -57,15 +55,25 @@ class CartProvider extends ChangeNotifier {
 
   void removeFromCart(dynamic item) {
     _totalItemPrice = item["price"] * item["numOfItem"];
-    _totalPill = _totalPill - _totalItemPrice;
+    totalPill = totalPill - _totalItemPrice;
     item["numOfItem"] = 1;
     item["total price"] = item["price"];
     myCart.remove(item);
     Future.microtask(() => notifyListeners());
+    if (myCart.isEmpty) {
+      BuildDialog.showSuccessDialog(
+          barrierDismissible: false,
+          content: "no item in the cart go to menu and shopping again",
+          title: "Empty Cart",
+          route: menuRoute,
+          icon: Icons.shopping_cart_outlined,
+          textButton: "Menu Screen",
+          color: AppColors.lightOrangeColor);
+    }
   }
 
   void resetBill() {
-    _totalPill = 0;
+    totalPill = 0;
   }
 
   List<dynamic> deepCopy(List<dynamic> list) {
@@ -74,26 +82,26 @@ class CartProvider extends ChangeNotifier {
       if (element is List) {
         copy.add(deepCopy(element));
       } else {
-        copy.add(element); // Copy other elements directly
+        copy.add(element);
       }
     }
     return copy;
   }
 
   Future<void> sendOrder() async {
-    myCart.add({"totalPrice": _totalPill});
+    myCart.add({"totalPrice": totalPill});
     List<dynamic> copyCart = deepCopy(myCart);
-    myOrder.add(copyCart);
-    resetBill();
-    emptyCart();
+    myOrders.add(copyCart);
     BuildDialog.showSuccessDialog(
         icon: Icons.fastfood,
         title: "Successfully Send Order",
-        textButton:"Home",
+        textButton: "Home",
         color: AppColors.orangeColor,
         barrierDismissible: false,
         content: "success order Welcome To Fast Food App",
         route: homeRoute);
+    resetBill();
+    emptyCart();
   }
 
   void emptyCart() {

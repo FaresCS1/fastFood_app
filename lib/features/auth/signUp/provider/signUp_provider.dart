@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/colors/appColors.dart';
 import '../../../../core/routes/myRoutes.dart';
-import '../../../../core/shered_widget/dialog/build_dialog.dart';
+import '../../../../core/sheared_widget/dialog/build_dialog.dart';
 
 class SignUpProvider extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();

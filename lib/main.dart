@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/routes/myRoutes.dart';
-import 'package:untitled2/features/cart/provider/cart_provider.dart';
 import 'core/shared_preferences/SharedPrefHelper.dart';
 import 'core/dimensions/appDimension.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'core/provider/app_state/appState_provider.dart';
 import 'core/routes/appRoute.dart';
-import 'features/splash/pages/splachPages.dart';
+import 'features/splash/pages/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +15,6 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => AppStateProvider()),
       ],
       child: const MyApp(),

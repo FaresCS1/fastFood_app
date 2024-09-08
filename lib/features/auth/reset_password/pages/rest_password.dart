@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/core/colors/appColors.dart';
@@ -6,9 +5,9 @@ import 'package:untitled2/core/dimensions/appDimension.dart';
 import 'package:untitled2/core/dimensions/myDimensions.dart';
 import '../../../../core/provider/app_state/appState_provider.dart';
 import '../../../../core/provider/user_provider/user_provider.dart';
-import '../../../../core/shered_widget/buttons/auth_button/widget/auth_button_widget.dart';
-import '../../../../core/shered_widget/dialog/build_dialog.dart';
-import '../../../../core/shered_widget/textfiled/textFormFieldWidgte.dart';
+import '../../../../core/sheared_widget/buttons/auth_button/widget/auth_button_widget.dart';
+import '../../../../core/sheared_widget/dialog/build_dialog.dart';
+import '../../../../core/sheared_widget/textField/textFieldWidget.dart';
 
 class RestPasswordScreen extends StatelessWidget {
   final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
