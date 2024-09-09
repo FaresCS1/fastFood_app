@@ -23,7 +23,7 @@ Widget locationWidget() {
               borderRadius: BorderRadius.circular(15),
               image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/others/fake_map.jpg"))),
+                  image: AssetImage("assets/images/others/fake_map.png"))),
         ),
         const Divider(
           height: 5,

@@ -16,17 +16,20 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: InkWell(
-        onTap: function,
-        child: text == "Sign Out"
-            ? Icon(
+    return InkWell(
+      onTap: function,
+      child: text == "Sign Out"
+          ? Padding(
+              padding: const EdgeInsets.all(10),
+              child: Icon(
                 icon,
                 color: AppColors.redColor,
                 size: dimensionWidth(0.08),
-              )
-            : Container(
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.all(10),
+              child: Container(
                 padding: EdgeInsets.all(dimensionWidth(0.03)),
                 decoration: BoxDecoration(
                     color: AppColors.whiteColor,
@@ -51,7 +54,7 @@ class AuthButton extends StatelessWidget {
                   ],
                 ),
               ),
-      ),
+            ),
     );
   }
 }

@@ -5,7 +5,7 @@ class SplashProvider extends ChangeNotifier {
 
   Future<void> startDelayedNavigation() {
     return Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 1),
       () {
         shouldNavigate = true;
         Future.microtask(() => notifyListeners());

@@ -22,15 +22,15 @@ class FoodInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BuildDialog.init(context);
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         leading: backIcon(),
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: AppColors.bgColor,
       ),
       body: Column(
         children: [
           Container(
-            color: AppColors.whiteColor,
+            color: AppColors.bgColor,
             width: AppDimension.currentWidth,
             child: Image.asset(
               foodInfo["img"],
@@ -43,10 +43,10 @@ class FoodInfoScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(20),
               decoration: const BoxDecoration(
-                color: AppColors.bgColor,
+                color: AppColors.whiteColor,
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(150),
-                    topLeft: Radius.circular(150)),
+                    topRight: Radius.circular(100),
+                    topLeft: Radius.circular(100)),
               ),
               child: ChangeNotifierProvider(
                 create: (_) => CartProvider(),
