@@ -15,23 +15,25 @@ class LoginProvider extends ChangeNotifier {
   GlobalKey<FormState> passwordFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
-  final List<QueryDocumentSnapshot> _currentUserData = [];
+  final List<QueryDocumentSnapshot> currentUserData = [];
 
   getData() async {
+    print("4444444444444444444444444444444");
     try {
+      print("5555555555555555555555555555555555555555555555");
       QuerySnapshot userData = await FirebaseFirestore.instance
           .collection("Users")
           .where("email", isEqualTo: emailController.text)
           .get();
-      _currentUserData.addAll(userData.docs);
-      SharedPrefsHelper.setString("email", _currentUserData.first['email']);
+      currentUserData.addAll(userData.docs);
+      SharedPrefsHelper.setString("email", currentUserData.first['email']);
       SharedPrefsHelper.setString(
-          "fullName", _currentUserData.first['fullName']);
+          "fullName", currentUserData.first['fullName']);
       SharedPrefsHelper.setString(
-          "location", _currentUserData.first['location']);
+          "location", currentUserData.first['location']);
       SharedPrefsHelper.setString(
-          "password", _currentUserData.first['password']);
-      SharedPrefsHelper.setString("phone", _currentUserData.first['phone']);
+          "password", currentUserData.first['password']);
+      SharedPrefsHelper.setString("phone", currentUserData.first['phone']);
       SharedPrefsHelper.setBool("login", true);
       notifyListeners();
     } catch (e) {
@@ -47,15 +49,25 @@ class LoginProvider extends ChangeNotifier {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
-        getData();
-        BuildDialog.showSuccessDialog(
-            color: AppColors.greenColor,
-            barrierDismissible: false,
-            content: "success Login Welcome To Fast Food App",
-            title: "Success Login",
-            textButton: "Explore FastFood App",
-            icon: Icons.verified_user,
-            route: homeRoute);
+        if (FirebaseAuth.instance.currentUser!.emailVerified) {
+          getData();
+          BuildDialog.showSuccessDialog(
+              color: AppColors.greenColor,
+              barrierDismissible: false,
+              content: "success Login Welcome To Fast Food App",
+              title: "Success Login",
+              textButton: "Explore FastFood App",
+              icon: Icons.verified_user,
+              route: homeRoute);
+        } else if (FirebaseAuth.instance.currentUser!.emailVerified == false) {
+          FirebaseAuth.instance.currentUser!.sendEmailVerification();
+          BuildDialog.showErrorDialog(
+            barrierDismissible: true,
+            textButton: "Close",
+            content: "filed login authenticate your email",
+            title: "Filed Login",
+          );
+        }
       } on FirebaseAuthException catch (e) {
         BuildDialog.showErrorDialog(
           barrierDismissible: true,

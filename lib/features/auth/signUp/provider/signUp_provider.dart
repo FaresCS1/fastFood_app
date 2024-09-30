@@ -50,6 +50,7 @@ class SignUpProvider extends ChangeNotifier {
           phoneController.text.trim(),
           passwordController.text.trim(),
         );
+        FirebaseAuth.instance.currentUser!.sendEmailVerification();
         BuildDialog.showSuccessDialog(
             color: AppColors.greenColor,
             barrierDismissible: false,
